@@ -1,5 +1,8 @@
 # Blueprint Manager
 
+## DB Diagram
+![database schema design here!](/dbDiagram.png)
+
 ## USER AUTHENTICATION/AUTHORIZATION
 
 ### All endpoints that require authentication
