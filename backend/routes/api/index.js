@@ -1,41 +1,37 @@
 const router = require('express').Router();
-const { restoreUser } = require('../../utils/auth.js');
+const sessionRouter = require('./session.js');
+const pmsRouter = require('./projectmanagers.js');
+const { restoreUser } = require("../../utils/auth.js");
 
+// Connect restoreUser middleware to the API router
+  // If current user session is valid, set req.projectmanager to the user in the database
+  // If current user session is not valid, set req.projectmanager to null
 router.use(restoreUser);
 
-router.post('/test', function(req, res) {
-    res.json({ requestBody: req.body });
+router.use('/session', sessionRouter);
+
+router.use('/projectmanagers', pmsRouter);
+
+router.post('/test', (req, res) => {
+  res.json({ requestBody: req.body });
 });
-
-// GET /api/set-token-cookie
-const { setTokenCookie } = require('../../utils/auth.js');
-const { ProjectManager } = require('../../db/models');
-router.get('/set-token-cookie', async (_req, res) => {
-  const user = await ProjectManager.findOne({
-    where: {
-      username: 'Demo-Lition'
-    }
-  });
-  setTokenCookie(res, user);
-  return res.json({ user: user });
-});
-
-router.get(
-    '/restore-user',
-    (req, res) => {
-        return res.json(req.projectmanager);
-    }
-);
-
-// GET /api/require-auth
-const { requireAuth } = require('../../utils/auth.js');
-router.get(
-  '/require-auth',
-  requireAuth,
-  (req, res) => {
-    return res.json(req.projectmanager);
-  }
-);
-
 
 module.exports = router;
+
+
+// fetch('/api/projectmanagers', {
+//     method: 'POST',
+//     headers: {
+//       "Content-Type": "application/json",
+//       "XSRF-TOKEN": `Rj87xTcp-GZ3p_jtdmoQjHiQCRw0b63ROKZ0`
+//     },
+//     body: JSON.stringify({
+//         firstName: 'Peter',
+//         lastName: 'Parker',
+//         companyName: 'ACME',
+//         industrySector: "Photography",
+//         email: 'spidey@spider.man',
+//         username: 'Spidey',
+//         password: 'password',
+//     })
+//   }).then(res => res.json()).then(data => console.log(data));
