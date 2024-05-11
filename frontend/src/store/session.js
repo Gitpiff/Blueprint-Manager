@@ -17,6 +17,30 @@ export const removeProjectManager = () => {
     };
 };
 
+
+
+//Thunks
+export const login = (projectManager) => async (dispatch) => {
+    const { credential, password } = projectManager;
+    const response = await csrfFetch('api/session', {
+        method: 'POST',
+        body: JSON.stringify({
+            credential,
+            password
+        })
+    })
+    
+    if(response.ok) {
+        const data = await response.json();
+        dispatch(setProjectManager(data.projectManager));
+        return response
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+}
+
+
 export const signup = (projectManager) => async (dispatch) => {
     const { firstName, lastName, username, email, companyName, industrySector, password } = projectManager;
     //console.log(projectManager);
@@ -37,6 +61,23 @@ export const signup = (projectManager) => async (dispatch) => {
     dispatch(setProjectManager(data.projectManager));
     return response;
 };
+
+export const logout = () => async (dispatch) => {
+    const response = await csrfFetch("/api/session", {
+        method: "DELETE"
+    })
+    
+    dispatch(removeProjectManager())
+    return response
+}
+
+export const restoreProjectManager = () => async (dispatch) => {
+    const response = await csrfFetch("/api/session");
+    const data = await response.json();
+    dispatch(setProjectManager(data.projectManager));
+    return response;
+};
+
 const initialState = { projectManager: null };
 
 const sessionReducer = (state = initialState, action) => {
@@ -51,45 +92,6 @@ const sessionReducer = (state = initialState, action) => {
 };
   
 export default sessionReducer;
-
-
-//Thunks
-export const login = (projectManager) => async (dispatch) => {
-    const { credential, password } = projectManager;
-    const response = await csrfFetch('api/session', {
-        method: 'POST',
-        body: JSON.stringify({
-            credential,
-            password
-        })
-    })
-
-    if(response.ok) {
-        const data = await response.json();
-        dispatch(setProjectManager(data.projectManager));
-        return response
-    } else {
-        const errors = await response.json();
-        return errors;
-    }
-}
-
-export const logout = () => async (dispatch) => {
-    const response = await csrfFetch("/api/session", {
-        method: "DELETE"
-    })
-
-    dispatch(removeProjectManager())
-    return response
-}
-
-export const restoreProjectManager = () => async (dispatch) => {
-    const response = await csrfFetch("/api/session");
-    const data = await response.json();
-    dispatch(setProjectManager(data.projectManager));
-    return response;
-};
-
 
 // store.dispatch(
 //   sessionActions.signup({
