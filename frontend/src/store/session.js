@@ -1,21 +1,57 @@
 import { csrfFetch } from './csrf';
 
-const SET_PROJECTMANAGER = 'session/setProjetManager';
+const SET_PROJECTMANAGER = 'session/setProjectManager';
 const REMOVE_PROJECTMANAGER = 'session/removeProjectManager';
 
 // Actions
-const setProjectManager = (projectManager) => {
+export const setProjectManager = (projectManager) => {
     return {
         type: SET_PROJECTMANAGER,
         payload: projectManager
     };
 };
 
-const removeProjectManager = () => {
+export const removeProjectManager = () => {
     return {
         type: REMOVE_PROJECTMANAGER
     };
 };
+
+export const signup = (projectManager) => async (dispatch) => {
+    const { firstName, lastName, username, email, companyName, industrySector, password } = projectManager;
+    //console.log(projectManager);
+    const response = await csrfFetch('api/projectManagers', {
+        method: 'POST',
+        body: JSON.stringify({
+            firstName,
+            lastName,
+            username,
+            email,
+            companyName,
+            industrySector,
+            password
+        })
+    });
+    const data = await response.json();
+    console.log(data);
+    dispatch(setProjectManager(data.projectManager));
+    return response;
+};
+const initialState = { projectManager: null };
+
+const sessionReducer = (state = initialState, action) => {
+    switch (action.type) {
+      case SET_PROJECTMANAGER:
+        return { ...state, projectManager: action.payload };
+      case REMOVE_PROJECTMANAGER:
+        return { ...state, projectManager: null };
+      default:
+        return state;
+    }
+};
+  
+export default sessionReducer;
+
 
 //Thunks
 export const login = (projectManager) => async (dispatch) => {
@@ -54,17 +90,15 @@ export const restoreProjectManager = () => async (dispatch) => {
     return response;
 };
 
-const initialState = { projectManager: null };
 
-const sessionReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case SET_PROJECTMANAGER:
-        return { ...state, projectManager: action.payload };
-      case REMOVE_PROJECTMANAGER:
-        return { ...state, projectManager: null };
-      default:
-        return state;
-    }
-};
-  
-  export default sessionReducer;
+// store.dispatch(
+//   sessionActions.signup({
+//     firstName: "New",
+//     lastName: "User",
+//     username: "NewUser",
+//     email: "new@user.io",
+//     companyName: "NEW",
+//     industrySector: "Construction",
+//     password: "password",
+//   })
+// )
