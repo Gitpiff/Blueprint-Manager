@@ -32,6 +32,7 @@ export const login = (projectManager) => async (dispatch) => {
     
     if(response.ok) {
         const data = await response.json();
+        console.log(data)
         dispatch(setProjectManager(data.projectManager));
         return response
     } else {
@@ -93,14 +94,4 @@ const sessionReducer = (state = initialState, action) => {
   
 export default sessionReducer;
 
-// store.dispatch(
-//   sessionActions.signup({
-//     firstName: "New",
-//     lastName: "User",
-//     username: "NewUser",
-//     email: "new@user.io",
-//     companyName: "NEW",
-//     industrySector: "Construction",
-//     password: "password",
-//   })
-// )
+

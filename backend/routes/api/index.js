@@ -19,19 +19,3 @@ router.post('/test', (req, res) => {
 module.exports = router;
 
 
-// fetch('/api/projectmanagers', {
-//     method: 'POST',
-//     headers: {
-//       "Content-Type": "application/json",
-//       "XSRF-TOKEN": `Rj87xTcp-GZ3p_jtdmoQjHiQCRw0b63ROKZ0`
-//     },
-//     body: JSON.stringify({
-//         firstName: 'Peter',
-//         lastName: 'Parker',
-//         companyName: 'ACME',
-//         industrySector: "Photography",
-//         email: 'spidey@spider.man',
-//         username: 'Spidey',
-//         password: 'password',
-//     })
-//   }).then(res => res.json()).then(data => console.log(data));

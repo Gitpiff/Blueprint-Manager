@@ -13,7 +13,7 @@ const demoUsers = [
     lastName: "Lition",
     username: "Demo-Lition",
     companyName: "Demo LLC",
-    email: "demo@test.io",
+    email: "@",
     industrySector: "Demolition",
     hashedPassword: bcrypt.hashSync('password')
   },
