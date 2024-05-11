@@ -1,36 +1,50 @@
 import { NavLink } from 'react-router-dom';
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import './Navigation.css'
+import OpenModalButton from '../OpenModalButton';
+import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormModal';
+import './Navigation.css';
 
 
 function Navigation({ isLoaded }) {
     const sessionProjectManager = useSelector((state) => state.session.projectManager);
     //console.log(sessionProjectManager)
 
-    const sessionLinks = sessionProjectManager ? (
+    let sessionLinks;
+    if(sessionProjectManager) {
+      sessionLinks = (
         <li>
-        <ProfileButton projectManager={sessionProjectManager} />
-        </li> 
-        ) : (
+          <ProfileButton projectManager={sessionProjectManager} />
+        </li>
+      ); 
+     } else {
+      sessionLinks = (
         <>
           <li>
-            <NavLink to="/login">Log In</NavLink>
+            <OpenModalButton
+              buttonText="Log In"
+              modalComponent={<LoginFormModal />}
+            />
           </li>
           <li>
-            <NavLink to="/signup">Sign Up</NavLink>
+            <OpenModalButton
+              buttonText="Sign Up"
+              modalComponent={<SignupFormModal />}
+            />
           </li>
         </>
       );
-    
-      return (
-        <ul>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          {isLoaded && sessionLinks}
-        </ul>
-      );
+     } 
+  
+    return (
+      <ul>
+        <li>
+          <NavLink to="/">Home</NavLink>
+        </li>
+        {isLoaded && sessionLinks}
+      </ul>
+    );
 }
     
 export default Navigation;
