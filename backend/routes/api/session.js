@@ -26,7 +26,7 @@ router.post(
     async (req, res, next) => {
       const { credential, password } = req.body;
   
-      const projectmanager = await ProjectManager.unscoped().findOne({
+      const projectManager = await ProjectManager.unscoped().findOne({
         where: {
           [Op.or]: {
             username: credential,
@@ -35,7 +35,7 @@ router.post(
         }
       });
   
-      if (!projectmanager || !bcrypt.compareSync(password, projectmanager.hashedPassword.toString())) {
+      if (!projectManager || !bcrypt.compareSync(password, projectManager.hashedPassword.toString())) {
         const err = new Error('Login failed');
         err.status = 401;
         err.title = 'Login failed';
@@ -44,15 +44,18 @@ router.post(
       }
   
       const safeUser = {
-        id: projectmanager.id,
-        email: projectmanager.email,
-        username: projectmanager.username,
+        email: projectManager.email,
+        username: projectManager.username,
+        firstName: projectManager.firstName,
+        lastName: projectManager.lastName,
+        companyName: projectManager.companyName,
+        industrySector: projectManager.industrySector
       };
   
       await setTokenCookie(res, safeUser);
   
       return res.json({
-        user: safeUser
+        projectManager: safeUser
       });
     }
 );
@@ -70,17 +73,17 @@ router.delete(
 router.get(
     '/',
     (req, res) => {
-      const { projectmanager } = req;
-      if (projectmanager) {
+      const { projectManager } = req;
+      if (projectManager) {
         const safeUser = {
-          id: projectmanager.id,
-          email: projectmanager.email,
-          username: projectmanager.username,
+          id: projectManager.id,
+          email: projectManager.email,
+          username: projectManager.username,
         };
         return res.json({
-          user: safeUser
+          projectManager: safeUser
         });
-      } else return res.json({ user: null });
+      } else return res.json({ projectManager: null });
     }
   );
   

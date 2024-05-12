@@ -61,7 +61,7 @@ router.post(
       await setTokenCookie(res, safeUser);
   
       return res.json({
-        user: safeUser
+        projectManager: safeUser
       });
     }
   );
