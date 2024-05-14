@@ -18,14 +18,32 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [2, 30],
+        len: {
+          args: [2, 30],
+          msg: "First Name must have between 2 and 30 characters"
+        },
+        notEmpty: { 
+          msg: "First Name is required" 
+        },
+        notNull: {
+          msg: "First Name is required"
+        }
       }
     },
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [2, 30],
+        len: {
+          args: [2, 30],
+          msg: "Last Name must have between 2 and 30 characters"
+        },
+        notEmpty: { 
+          msg: "Last Name is required" 
+        },
+        notNull: {
+          msg: "Last Name is required"
+        }
       }
     },
     username: {
@@ -33,7 +51,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       validate: {
-        len: [3, 30],
+        len: {
+          args: [2, 15],
+          msg: "Username must have between 2 and 15 characters"
+        },
+        notEmpty: { 
+          msg: "Username is required" 
+        },
+        notNull: {
+          msg: "Username Name is required"
+        },
         isNotEmail(value) {
           if (Validator.isEmail(value)) {
             throw new Error("Cannot be an email.");
@@ -46,7 +73,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       validate: {
-        len: [3, 256],
+        len: {
+          args: [2, 30],
+          msg: "Email must have between 2 and 30 characters"
+        },
+        notEmpty: { 
+          msg: "Email is required" 
+        },
+        notNull: {
+          msg: "Email is required"
+        },
         isEmail: true
       }
     },
@@ -54,21 +90,48 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1, 30],
+        len: {
+          args: [2, 30],
+          msg: "Company Name must have between 2 and 30 characters"
+        },
+        notEmpty: { 
+          msg: "Company Name is required" 
+        },
+        notNull: {
+          msg: "Company Name is required"
+        }
       }
     },
     industrySector: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [2, 30],
+        len: {
+          args: [2, 30],
+          msg: "Industry Sector must have between 2 and 30 characters"
+        },
+        notEmpty: { 
+          msg: "Industry Sector is required" 
+        },
+        notNull: {
+          msg: "Industry Sector is required"
+        }
       }
     },
     hashedPassword: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [6, 60]
+        len: {
+          args: [2, 30],
+          msg: "Password must have between 2 and 30 characters"
+        },
+        notEmpty: { 
+          msg: "Password is required" 
+        },
+        notNull: {
+          msg: "Password is required"
+        }
       }
     }
   }, {
