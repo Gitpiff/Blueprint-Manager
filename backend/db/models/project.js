@@ -62,6 +62,10 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    coverImage: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     budget: {
       type: DataTypes.INTEGER,
       allowNull: false,

@@ -14,14 +14,35 @@ function LoginFormModal() {
     const handleSubmit = (e) => {
       e.preventDefault();
       setErrors({});
+
       return dispatch(sessionActions.login({ credential, password }))
         .then(closeModal)
+        .then(setTimeout(() => {
+          location.reload();
+        }, 200))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) {
             setErrors(data.errors);
           }
         });
+    };
+
+    const demoUser = (e) => {
+      e.preventDefault();
+
+      return dispatch(
+          sessionActions.login(
+              {
+                  credential: "Demo-Lition",
+                  password: "password"
+              }
+          )
+      )
+      .then(closeModal)
+      .then(setTimeout(() => {
+        location.reload();
+      }, 200))
     };
   
 
@@ -48,7 +69,8 @@ function LoginFormModal() {
               />
             </label>
             {errors.credential && <p>{errors.credential}</p>}
-            <button type="submit">Log In</button>
+            <button type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
+            <button type="submit" onClick={demoUser}>Log In As Demo User</button>
           </form>
         </>
     );

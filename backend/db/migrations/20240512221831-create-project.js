@@ -21,6 +21,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      coverImage: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       budget: {
         type: Sequelize.INTEGER,
         allowNull: false

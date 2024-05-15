@@ -6,7 +6,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { ProjectManager } = require('../../db/models');
 const router = express.Router();
 
-// Validation middleware for creating and updating ProjectManager
+// Validation middleware for creating and updating Project Manager
 const validateProjectManager = [
   check('firstName')
     .exists({ checkFalsy: true })

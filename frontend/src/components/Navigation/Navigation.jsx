@@ -14,9 +14,12 @@ function Navigation({ isLoaded }) {
     let sessionLinks;
     if(sessionProjectManager) {
       sessionLinks = (
-        <li>
-          <ProfileButton projectManager={sessionProjectManager} />
-        </li>
+        <>
+          <li>
+            <ProfileButton projectManager={sessionProjectManager} />
+          </li>
+          <button>Yoo</button>
+        </>
       ); 
      } else {
       sessionLinks = (
