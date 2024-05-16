@@ -4,22 +4,27 @@ import ProfileButton from './ProfileButton';
 import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { SiNginxproxymanager } from "react-icons/si";
 import './Navigation.css';
+import ProjectsList from '../ProjectsList';
+
 
 
 function Navigation({ isLoaded }) {
     const sessionProjectManager = useSelector((state) => state.session.projectManager);
-    //console.log(sessionProjectManager)
+    console.log(sessionProjectManager)
 
     let sessionLinks;
     if(sessionProjectManager) {
       sessionLinks = (
-        <>
+        <div className="projects-container">
           <li>
             <ProfileButton projectManager={sessionProjectManager} />
           </li>
-          <button>Yoo</button>
-        </>
+          
+            <ProjectsList />
+         
+        </div>
       ); 
      } else {
       sessionLinks = (
@@ -41,12 +46,18 @@ function Navigation({ isLoaded }) {
      } 
   
     return (
-      <ul>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        {isLoaded && sessionLinks}
-      </ul>
+      <>
+        <nav style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#001f3f', padding: '10px 20px'}}>
+          <div className='logo'>
+            <NavLink style={{color: 'white'}}  to="/projects"><SiNginxproxymanager /></NavLink>
+          </div>
+          <div className='banner'>Blueprint Manager</div>
+          <div className='auth-btns'>
+            {isLoaded && sessionLinks}
+          </div>
+        </nav>
+      
+      </>
     );
 }
     

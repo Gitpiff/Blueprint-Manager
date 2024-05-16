@@ -45,7 +45,6 @@ router.post(
       }
 
       const safeUser = {
-        id: projectManager.id,
         email: projectManager.email,
         username: projectManager.username,
         firstName: projectManager.firstName,
@@ -82,9 +81,12 @@ router.get(
     const { projectManager } = req;
     if (projectManager) {
       const safeUser = {
-        id: projectManager.id,
         email: projectManager.email,
         username: projectManager.username,
+        firstName: projectManager.firstName,
+        lastName: projectManager.lastName,
+        companyName: projectManager.companyName,
+        industrySector: projectManager.industrySector
       };
       return res.json({
         projectManager: safeUser

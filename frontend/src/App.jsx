@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import * as sessionActions from './store/session';
 import ProjectsList from './components/ProjectsList';
+import Footer from './components/Footer';
 
 function Layout() {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function Layout() {
       <>
         <Navigation isLoaded={isLoaded} />
         {isLoaded && <Outlet />}
+        <Footer />
       </>
     );
 }
@@ -29,8 +31,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <ProjectsList />
       },
+      {
+        path: '/projects',
+        element: <ProjectsList />
+      }
     ]
   }
 ]);

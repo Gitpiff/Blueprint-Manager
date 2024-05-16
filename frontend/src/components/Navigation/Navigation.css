@@ -1,3 +1,56 @@
 body {
-    background-color: lightblue;
+    background-color: gray;
+    box-sizing: border-box;
+}
+
+.projects-container {
+    display: flex;
+}
+
+.auth-btns > li {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+li > button {
+    background-color: white;
+    border: 1px solid aliceblue;
+    width: 150px;
+    padding: 5px;
+    margin: 5px;
+}
+
+li > button:hover {
+    cursor: pointer;
+}
+
+nav {
+    display: 'flex';
+    justify-content: 'space-between';
+    align-items: 'center';
+    background-color: '#001f3f'
+}
+
+.banner {
+    font-size: xx-large;
+    font-weight: 600;
+    color: white;
+}
+
+.logo {
+    font-size: 4vh;
+}
+
+
+.user-toggle {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    color: white;
+}
+
+.user-toggle > li {
+    margin: 3px;
 }

@@ -17,9 +17,9 @@ function LoginFormModal() {
 
       return dispatch(sessionActions.login({ credential, password }))
         .then(closeModal)
-        .then(setTimeout(() => {
-          location.reload();
-        }, 200))
+        // .then(setTimeout(() => {
+        //   location.reload();
+        // }, 200))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) {
@@ -40,18 +40,18 @@ function LoginFormModal() {
           )
       )
       .then(closeModal)
-      .then(setTimeout(() => {
-        location.reload();
-      }, 200))
+      // .then(setTimeout(() => {
+      //   location.reload();
+      // }, 200))
     };
   
 
     return (
-        <>
+        <div style={{backgroundColor: '#001f3f'}} className='login-modal'>
           <h1>Log In</h1>
-          <form onSubmit={handleSubmit}>
+          <form className='form' onSubmit={handleSubmit}>
             <label>
-              Username or Email
+              Username or Email:  
               <input
                 type="text"
                 value={credential}
@@ -60,7 +60,7 @@ function LoginFormModal() {
               />
             </label>
             <label>
-              Password
+              Password: 
               <input
                 type="password"
                 value={password}
@@ -68,11 +68,13 @@ function LoginFormModal() {
                 required
               />
             </label>
-            {errors.credential && <p>{errors.credential}</p>}
-            <button type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
-            <button type="submit" onClick={demoUser}>Log In As Demo User</button>
+            {errors.credential && <p className='errors'>{errors.credential}</p>}
+            <div className='login-btns'>
+              <button type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
+              <button type="submit" onClick={demoUser}>Log In As Demo User</button>
+            </div>
           </form>
-        </>
+        </div>
     );
 }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import * as sessionActions from '../../store/session';
@@ -40,15 +40,24 @@ function SignupFormModal() {
             }
           });
         }
-        return setErrors({
-          confirmPassword: "Confirm Password field must be the same as the Password field"
-        });
       };
 
+      useEffect(() => {
+        let errObj = {}
+        if(password.length < 6) {
+          errObj.password = "Password must be more than 6 characters"
+        }
+        if(password !== confirmPassword) errObj.confirmPassword = "Confirm Password field must be the same as the Password field"
+        if(username.length < 4) {
+          errObj.password = "Username must be more than 4 characters"
+        }
+        setErrors(errObj)
+      }, [password, confirmPassword, username])
+
       return (
-        <>
+        <div style={{backgroundColor: '#001f3f'}} className='login-modal'>
           <h1>Sign Up</h1>
-          <form onSubmit={handleSubmit}>
+          <form className='form' onSubmit={handleSubmit}>
             
             <label>
               First Name
@@ -59,7 +68,7 @@ function SignupFormModal() {
                 required
               />
             </label>
-            {errors.firstName && <p>{errors.firstName}</p>}
+            {errors.firstName && <p className='errors'>{errors.firstName}</p>}
 
             <label>
               Last Name
@@ -70,7 +79,7 @@ function SignupFormModal() {
                 required
               />
             </label>
-            {errors.lastName && <p>{errors.lastName}</p>}
+            {errors.lastName && <p className='errors'>{errors.lastName}</p>}
 
             <label>
               Username
@@ -81,7 +90,7 @@ function SignupFormModal() {
                 required
               />
             </label>
-            {errors.username && <p>{errors.username}</p>}
+            {errors.username && <p className='errors'>{errors.username}</p>}
 
             <label>
               Company Name
@@ -92,7 +101,7 @@ function SignupFormModal() {
                 required
               />
             </label>
-            {errors.companyName && <p>{errors.companyName}</p>}
+            {errors.companyName && <p className='errors'>{errors.companyName}</p>}
 
             <label>
               Email
@@ -103,7 +112,7 @@ function SignupFormModal() {
                 required
               />
             </label>
-            {errors.email && <p>{errors.email}</p>}
+            {errors.email && <p className='errors'>{errors.email}</p>}
 
             <label>
               Industry Sector
@@ -114,7 +123,7 @@ function SignupFormModal() {
                 required
               />
             </label>
-            {errors.industrySector && <p>{errors.industrySector}</p>}
+            {errors.industrySector && <p className='errors'>{errors.industrySector}</p>}
 
             <label>
               Password
@@ -125,7 +134,7 @@ function SignupFormModal() {
                 required
               />
             </label>
-            {errors.password && <p>{errors.password}</p>}
+            {errors.password && <p className='errors'>{errors.password}</p>}
             <label>
               Confirm Password
               <input
@@ -135,10 +144,10 @@ function SignupFormModal() {
                 required
               />
             </label>
-            {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-            <button type="submit">Sign Up</button>
+            {errors.confirmPassword && <p className='errors'>{errors.confirmPassword}</p>}
+            <button className='signup-btn' type="submit">Sign Up</button>
           </form>
-        </>
+        </div>
       );      
 }
 

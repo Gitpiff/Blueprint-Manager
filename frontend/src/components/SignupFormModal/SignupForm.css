@@ -1,3 +1,40 @@
-body {
-    background-color: bisque;
+.login-modal {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: '#001f3f';
+    color: white;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px;
+}
+
+form > label {
+    margin: 10px;
+}
+
+label > input {
+    width: 200px;
+    margin: 10px;
+}
+
+button {
+    margin: 7px;
+    height: 50px;
+    width: 100px;
+    align-self: center;
+}
+
+.errors {
+    color: red;
+    display: flex;
+    justify-content: center;
 }

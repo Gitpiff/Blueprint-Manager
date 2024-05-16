@@ -1,17 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { SiNginxproxymanager } from "react-icons/si";
+import { FaHelmetSafety } from "react-icons/fa6";
 import * as sessionActions from '../../store/session';
 import { useNavigate } from 'react-router-dom';
+import './Navigation.css'
 
 const ProfileButton = ({ projectManager }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
   const toggleMenu = (e) => {
-    e.stopPropagation();
+    e.stopPropagation(); // Keep click from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
   };
 
@@ -19,43 +21,46 @@ const ProfileButton = ({ projectManager }) => {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (ulRef.current && !ulRef.current.contains(e.target)) {
+      if (!ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
-
     document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+    return () => document.removeEventListener('click', closeMenu);
+  }, [showMenu])
+
+  const closeMenu = () => setShowMenu(false);
 
   const logout = (e) => {
     e.preventDefault();
-    dispatch(sessionActions.logout())
-    .then(() => {
-      navigate('/');
-    })
+    dispatch(sessionActions.logout());
+    closeMenu();
+    navigate('/')
   };
 
   // const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
     return (
     <>
-      <button onClick={toggleMenu}>
-        <SiNginxproxymanager />
+      <button className='logo' onClick={toggleMenu}>
+        <FaHelmetSafety style={{color: '#001f3f'}}/>
       </button>
-      {showMenu && (
-        <ul ref={ulRef}>
-          <li>Username: {projectManager.username}</li>
-          <li>Name: {projectManager.firstName} {projectManager.lastName}</li>
-          <li>Email: {projectManager.email}</li>
-          <li>Company Name: {projectManager.companyName}</li>
-          <li>Industry Sector: {projectManager.industrySector}</li>
-          <li>
+      <div >
+        {showMenu && (
+          <>
+            <ul className='user-toggle' ref={ulRef}>
+              {/* <li>Username: {projectManager.username}</li> */}
+              <li>Name: {projectManager.firstName} {projectManager.lastName}</li>
+              {/* <li>Email: {projectManager.email}</li> */}
+              <li>Company Name: {projectManager.companyName}</li>
+              <li>Industry Sector: {projectManager.industrySector}</li>
+            </ul>
             <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
-      )}
+            <button>User Settings</button>
+          </>
+        )}
+      </div>
     </>
   );
 }
