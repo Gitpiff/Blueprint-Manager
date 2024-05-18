@@ -18,6 +18,7 @@ if (import.meta.env.MODE !== 'production') {
   window.sessionActions = sessionActions;
 }
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
     <ModalProvider>
@@ -27,4 +28,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </Provider>
     </ModalProvider>
   </React.StrictMode>
-  );
+);
+

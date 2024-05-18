@@ -17,9 +17,6 @@ function LoginFormModal() {
 
       return dispatch(sessionActions.login({ credential, password }))
         .then(closeModal)
-        // .then(setTimeout(() => {
-        //   location.reload();
-        // }, 200))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) {
@@ -40,9 +37,6 @@ function LoginFormModal() {
           )
       )
       .then(closeModal)
-      // .then(setTimeout(() => {
-      //   location.reload();
-      // }, 200))
     };
   
 

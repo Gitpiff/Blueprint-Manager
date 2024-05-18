@@ -1,62 +1,68 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { SiNginxproxymanager } from "react-icons/si";
-import './Navigation.css';
+import Footer from '../Footer';
 import ProjectsList from '../ProjectsList';
 
 
-
-function Navigation({ isLoaded }) {
+function Navigation() {
     const sessionProjectManager = useSelector((state) => state.session.projectManager);
     console.log(sessionProjectManager)
 
     let sessionLinks;
     if(sessionProjectManager) {
       sessionLinks = (
-        <div className="projects-container">
-          <li>
-            <ProfileButton projectManager={sessionProjectManager} />
-          </li>
-          
-           
-         
-        </div>
+        <>
+          <header>
+              <Link className="logo" to='/'><SiNginxproxymanager /></Link>
+              <h1 className="nav-title">Blueprint Manager</h1>
+              <nav>
+                <ProfileButton projectManager={sessionProjectManager} />
+              </nav>
+            </header>
+            <div className="home-body">
+              <ProjectsList />
+            </div>
+            <footer>
+                <Footer />
+            </footer>
+        </>
       ); 
      } else {
       sessionLinks = (
         <>
-          <li>
-            <OpenModalButton
-              buttonText="Log In"
-              modalComponent={<LoginFormModal />}
-            />
-          </li>
-          <li>
-            <OpenModalButton
-              buttonText="Sign Up"
-              modalComponent={<SignupFormModal />}
-            />
-          </li>
+          <header>
+                <Link className="logo" to='/'><SiNginxproxymanager /></Link>
+                <h1 className="nav-title">Blueprint Manager</h1>
+                <nav>
+                    <OpenModalButton 
+                        buttonText="Log In"
+                        modalComponent={<LoginFormModal />}
+                    />
+                    <OpenModalButton 
+                        buttonText="Signup"
+                        modalComponent={<SignupFormModal />}
+                    />   
+                </nav>
+            </header>
+            <div className="home-body">
+            </div>
+            <footer>
+                <Footer />
+            </footer>
         </>
       );
      } 
   
     return (
       <>
-        <nav style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#001f3f', padding: '10px 20px'}}>
-          <div className='logo'>
-            <NavLink style={{color: 'white'}}  to="/projects"><SiNginxproxymanager /></NavLink>
-          </div>
-          <div className='banner'>Blueprint Manager</div>
           <div className='auth-btns'>
-            {isLoaded && sessionLinks}
+            {sessionLinks}
           </div>
-        </nav>
-        
       </>
     );
 }

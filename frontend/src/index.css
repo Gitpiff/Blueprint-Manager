@@ -57,7 +57,7 @@ button:hover {
 }
 
 .home-body {
-        background-image: url('../public/blueprint.jpeg');
+        background-image: url('/blueprint.jpeg');
         background-size: cover;
         background-position: center;
         height: 100vh; /* Full height */
