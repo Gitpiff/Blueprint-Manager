@@ -22,7 +22,7 @@ function Navigation({ isLoaded }) {
             <ProfileButton projectManager={sessionProjectManager} />
           </li>
           
-            <ProjectsList />
+           
          
         </div>
       ); 
@@ -56,7 +56,7 @@ function Navigation({ isLoaded }) {
             {isLoaded && sessionLinks}
           </div>
         </nav>
-      
+        
       </>
     );
 }

@@ -1,47 +1,33 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import * as sessionActions from './store/session';
-import ProjectsList from './components/ProjectsList';
-import Footer from './components/Footer';
+import { BrowserRouter, Link } from "react-router-dom";
+import { SiNginxproxymanager } from "react-icons/si";
+import OpenModalButton from './components/OpenModalButton';
+import LoginFormModal from "./components/LoginFormModal/LoginFormModal";
+import SignupFormModal from "./components/SignupFormModal/SignupFormModal";
+import Footer from "./components/Footer"
 
-function Layout() {
-    const dispatch = useDispatch();
-    const [isLoaded, setIsLoaded] = useState(false);
-  
-    useEffect(() => {
-      dispatch(sessionActions.restoreProjectManager()).then(() => {
-        setIsLoaded(true)
-      });
-    }, [dispatch]);
-  
+
+export default function App(){
     return (
-      <>
-        <Navigation isLoaded={isLoaded} />
-        {isLoaded && <Outlet />}
-        <Footer />
-      </>
-    );
+        <BrowserRouter>
+            <header>
+                <Link className="logo" to='/'><SiNginxproxymanager /></Link>
+                <h1 className="nav-title">Blueprint Manager</h1>
+                <nav>
+                    <OpenModalButton 
+                        buttonText="Log In"
+                        modalComponent={<LoginFormModal />}
+                    />
+                    <OpenModalButton 
+                        buttonText="Signup"
+                        modalComponent={<SignupFormModal />}
+                    />   
+                </nav>
+            </header>
+            <div className="home-body">
+            </div>
+            <footer>
+                <Footer />
+            </footer>
+        </BrowserRouter>
+    )
 }
-
-const router = createBrowserRouter([
-  {
-    element: <Layout />,
-    children: [
-      {
-        path: '/',
-      },
-      {
-        path: '/projects',
-        element: <ProjectsList />
-      }
-    ]
-  }
-]);
-
-function App() {
-  return <RouterProvider router={router} />;
-}
-
-export default App;
