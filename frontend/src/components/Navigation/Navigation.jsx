@@ -60,7 +60,7 @@ function Navigation() {
   
     return (
       <>
-          <div className='auth-btns'>
+          <div>
             {sessionLinks}
           </div>
       </>

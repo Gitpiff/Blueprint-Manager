@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProjects } from '../../store/project';
-import './ProjectsList.css'
+import { Link } from 'react-router-dom';
 
 const ProjectsList = () => {
     const dispatch = useDispatch();
     const projectList = useSelector((state) => Object.values(state.project));
-    console.log(projectList);
+    //console.log(projectList);
 
     useEffect(() => {
         dispatch(getProjects())
@@ -14,9 +14,10 @@ const ProjectsList = () => {
 
     // Get the correct date format
     function getYearMonthDay(dateString) {
+        if (!dateString) return 'N/A'; // Handle undefined dates
         const date = new Date(dateString);
         const year = date.getFullYear();
-        const month = date.getMonth() + 1; // getMonth() returns 0-11
+        const month = date.getMonth() + 1; 
         const day = date.getDate();
         
         const formattedMonth = month.toString().padStart(2, '0');
@@ -29,16 +30,18 @@ const ProjectsList = () => {
     return (
         <>
             <h1> Active Projects</h1>
-            <div className='project-card-container'>
+            <div className='card-container'>
                 {projectList?.map((project) => (
-                    <div key={project.id}>
-                        <div className='card'>
-                            <h2>Project Name: {project.name}</h2>
-                            <h2>Client: {project.clientId}</h2>
-                            <h3>Start Date: {getYearMonthDay(project.commencementDate)}</h3>
-                            <h3>Completion Date: {getYearMonthDay(project.completionDate)}</h3>
-                            <img style={{ height: '300px', width: '300px'}} src={project.coverImage} alt="" />
-                        </div>
+                    <div className='link' key={project.id}>
+                        <Link to={`/api/projects/${project.id}`}>
+                            <div className='card'>
+                                <h2>Project Name: {project.name}</h2>
+                                <h2>Client: {project.clientId}</h2>
+                                <h3>Start Date: {getYearMonthDay(project.commencementDate)}</h3>
+                                <h3>Completion Date: {getYearMonthDay(project.completionDate)}</h3>
+                                <img className="card-image" src={project.coverImage} alt={project.name}/>
+                            </div>
+                        </Link>
                     </div>
                 ))}
             </div>

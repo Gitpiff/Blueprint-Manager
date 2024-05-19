@@ -25,7 +25,7 @@ nav {
     flex-direction: column;
     flex-wrap: wrap;
     text-decoration: none;
-    width: 10%;
+    width: auto;
 }
 
 nav > button {
@@ -48,6 +48,12 @@ button:hover {
 .logo {
     font-size: 4vh;
     color: white;
+    height: auto;
+    width: auto;
+}
+
+.logo:hover {
+    cursor: pointer;
 }
 
 .nav-title {
@@ -57,13 +63,46 @@ button:hover {
 }
 
 .home-body {
-        background-image: url('/blueprint.jpeg');
-        background-size: cover;
-        background-position: center;
-        height: 100vh; /* Full height */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background-image: url(/blueprint.jpeg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.card {
+    border: solid;
+    padding: 20px;
+    margin: 30px; 
+    background-color: slategray;
+    opacity: .9;
+    text-decoration: none;
+    color: white;
+}
+
+.card:hover{
+    cursor: pointer;
+}
+
+.card-image {
+    display: flex;
+    height: 300px;
+    width: 300px;
+    margin: auto;
+    border: 1px solid white;
+}
+
+a {
+ text-decoration: none;   
+}
+  
