@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import OpenModalButton from '../OpenModalButton';
@@ -18,14 +18,14 @@ function Navigation() {
       sessionLinks = (
         <>
           <header>
-              <Link className="logo" to='/'><SiNginxproxymanager /></Link>
+              <Link className="logo" to='/projects'><SiNginxproxymanager /></Link>
               <h1 className="nav-title">Blueprint Manager</h1>
               <nav>
                 <ProfileButton projectManager={sessionProjectManager} />
               </nav>
             </header>
             <div className="home-body">
-              <ProjectsList />
+              <Outlet />
             </div>
             <footer>
                 <Footer />

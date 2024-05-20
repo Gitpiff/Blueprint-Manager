@@ -29,11 +29,11 @@ const ProjectsList = () => {
 
     return (
         <>
-            <h1> Active Projects</h1>
+            <h1 className='activeProjects'> Active Projects</h1>
             <div className='card-container'>
                 {projectList?.map((project) => (
                     <div className='link' key={project.id}>
-                        <Link to={`/api/projects/${project.id}`}>
+                        <Link to={`/projects/${project.id}`}>
                             <div className='card'>
                                 <h2>Project Name: {project.name}</h2>
                                 <h2>Client: {project.clientId}</h2>

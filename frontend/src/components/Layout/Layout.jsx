@@ -18,7 +18,7 @@ function Layout() {
     return (
       <>
         <Navigation isLoaded={isLoaded} />
-        {isLoaded && <Outlet />}
+        {isLoaded}
         <Footer />
       </>
     );

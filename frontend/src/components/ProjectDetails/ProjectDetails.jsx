@@ -28,9 +28,27 @@ export default function ProjectDetails() {
 
     return ( project && 
         <>
+        <nav className="projectNav">
+            <h2>Days to Completion</h2>
+            <h2>{project.name}</h2>
+            <h2>{project.clientId}</h2>
+            <h2>{project.budget}</h2>
+        </nav>
 
+        <div className="projectCard">
             <h1>{project.name}</h1>
-            <h2>{project.description}</h2>
+            <img style={{height: '400px', width: '400px'}} src={project.coverImage} alt={project.name} />
+            <h3>Description</h3>
+            <p>{project.description}</p>
+            <div>
+                <button>Staff</button>
+                <button>Edit</button>
+                <button>Delete</button>
+                <button>Complete</button>
+                <button>Directions</button>
+            </div>
+        </div>
+
         </>
     )
 }

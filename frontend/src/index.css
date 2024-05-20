@@ -12,6 +12,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
+    background-attachment: fixed;
     /* display: flex; */
     /* justify-content: center;
     align-items: center;
@@ -32,10 +33,13 @@ header {
 
 nav {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     text-decoration: none;
     width: auto;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav > button {
@@ -102,5 +106,40 @@ button:hover {
 
 a {
  text-decoration: none;   
+}
+
+.projectCard {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-color: azure;
+    opacity: .7;
+    color: black;
+    height: 100vh;
+}
+
+.activeProjects {
+    color: black;
+    background-color: aliceblue;
+    opacity: .7;
+    margin-top: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.projectNav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-decoration: none;
+    width: auto;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
 }
   
