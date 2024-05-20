@@ -7,6 +7,16 @@ body {
     margin: 0;
     padding: 0;
     background-color: gray;
+    background-image: url(/blueprint.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  */
 }
 
 header {
@@ -60,18 +70,6 @@ button:hover {
     font-size: xx-large;
     font-weight: 600;
     color: white;
-}
-
-.home-body {
-    background-image: url(/blueprint.jpeg);
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .card-container {
