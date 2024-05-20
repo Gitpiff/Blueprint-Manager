@@ -61,6 +61,41 @@ router.get('/:projectId', requireAuth, async (req, res, next) => {
     }
 });
 
+// Update Project -need to refactor 
+router.put('/:projectId', requireAuth, async (req, res, next) => {
+    const { projectManager } = req;
+    try {
+        const { name, clientId, description, budget, commencementDate, completionDate, coverImage } = req.body;
+        const project = await Project.findByPk(req.params.projectId);
+
+        if (project) {
+            if (project.projectManagerId !== projectManager.id) {
+                return res.status(403).json({ message: "Unauthorized to update this project" });
+            }
+
+            project.name = name;
+            project.clientId = clientId;
+            project.description = description;
+            project.budget = budget;
+            project.commencementDate = commencementDate;
+            project.completionDate = completionDate;
+            project.coverImage = coverImage
+
+            await project.save();
+
+            res.status(200).json(project);
+        } else {
+            res.status(404).json({ message: "Project not found" });
+        }
+    } catch (error) {
+        next({
+            message: "Bad Request",
+            status: 400,
+            stack: error.stack
+        });
+    }
+});
+
 // Get All Projects of Current PM
 // router.get('/current', requireAuth, async (req, res, next) => {
 //     const { projectManager } = req;
@@ -140,39 +175,7 @@ router.get('/:projectId', requireAuth, async (req, res, next) => {
 // })
 
 
-// Update Project -need to refactor 
-// router.put('/:projectId', requireAuth, async (req, res, next) => {
-//     const { projectManager } = req;
-//     try {
-//         const { name, clientId, description, budget, commencementDate, completionDate } = req.body;
-//         const project = await Project.findByPk(req.params.projectId);
 
-//         if (project) {
-//             if (project.projectManagerId !== projectManager.id) {
-//                 return res.status(403).json({ message: "Unauthorized to update this project" });
-//             }
-
-//             project.name = name;
-//             project.clientId = clientId;
-//             project.description = description;
-//             project.budget = budget;
-//             project.commencementDate = commencementDate;
-//             project.completionDate = completionDate;
-
-//             await project.save();
-
-//             res.status(200).json(project);
-//         } else {
-//             res.status(404).json({ message: "Project not found" });
-//         }
-//     } catch (error) {
-//         next({
-//             message: "Bad Request",
-//             status: 400,
-//             stack: error.stack
-//         });
-//     }
-// });
 
 // Delete Project
 // router.delete('/:projectId', requireAuth, async (req, res, next) => {

@@ -42,7 +42,7 @@ export default function ProjectDetails() {
             <p>{project.description}</p>
             <div>
                 <button>Staff</button>
-                <button>Edit</button>
+                <button>Update</button>
                 <button>Delete</button>
                 <button>Complete</button>
                 <button>Directions</button>

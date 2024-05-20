@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+//import { Outlet } from 'react-router-dom';
 import Navigation from '../Navigation';
 import * as sessionActions from '../../store/session';
 import Footer from '../Footer';
