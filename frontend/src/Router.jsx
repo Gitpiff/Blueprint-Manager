@@ -3,13 +3,14 @@ import Layout from './components/Layout';
 import ProjectsList from './components/ProjectsList';
 import ProjectDetails from './components/ProjectDetails';
 import EditProjectModal from './components/EditProjectModal';
+import CreateProjectModal from './components/CreateProjectModal';
 
 const router = createBrowserRouter([
     {
         element: <Layout />,
         children: [
             {
-                path: '/'
+                path: '/',
             },
             {
                 path: '/projects',
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
             {
                 path: 'projects/:id/edit',
                 element: <EditProjectModal />
+            },
+            {
+                path: 'projects/new',
+                element:<CreateProjectModal />
             },
             {
                 path: '*',

@@ -117,6 +117,37 @@ router.delete('/:projectId', requireAuth, async (req, res, next) => {
     }
 });
 
+// Post New Project
+router.post('/new', requireAuth, async (req, res, next) => {
+    const { projectManager } = req;
+    try {
+        const { name, clientId, description, budget, coverImage, commencementDate, completionDate } = req.body;
+
+        if (projectManager) {
+            const newProject = await Project.create ({
+                name,
+                clientId,
+                description,
+                budget,
+                coverImage,
+                projectManagerId: projectManager.id,
+                commencementDate,
+                completionDate
+            })
+
+            res.status(201).json(newProject);
+        } else {
+            res.status(403).json({ message: "Unauthorized" }); 
+        }
+
+    } catch(error) {
+        error.message = "Bad Request"
+        error.status = 400
+        next(error)
+    }
+
+})
+
 // Get All Projects of Current PM
 // router.get('/current', requireAuth, async (req, res, next) => {
 //     const { projectManager } = req;
@@ -165,35 +196,7 @@ router.delete('/:projectId', requireAuth, async (req, res, next) => {
 //     }
 // });
 
-// Post New Project
-// router.post('/', requireAuth, async (req, res, next) => {
-//     const { projectManager } = req;
-//     try {
-//         const { name, clientId, description, budget, commencementDate, completionDate } = req.body;
 
-//         if (projectManager) {
-//             const newProject = await Project.create ({
-//                 name,
-//                 clientId,
-//                 description,
-//                 budget,
-//                 projectManagerId: projectManager.id,
-//                 commencementDate,
-//                 completionDate
-//             })
-
-//             res.status(201).json(newProject);
-//         } else {
-//             res.status(403).json({ message: "Unauthorized" }); 
-//         }
-
-//     } catch(error) {
-//         error.message = "Bad Request"
-//         error.status = 400
-//         next(error)
-//     }
-
-// })
 
 
 

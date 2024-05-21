@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProjects } from '../../store/project';
 import { Link } from 'react-router-dom';
+import OpenModalButton from '../OpenModalButton';
+import CreateProjectModal from '../CreateProjectModal';
 
 const ProjectsList = () => {
     const dispatch = useDispatch();
@@ -30,6 +32,10 @@ const ProjectsList = () => {
     return (
         <>
             <h1 className='activeProjects'> Active Projects</h1>
+            <OpenModalButton
+                buttonText="Add Project"
+                modalComponent={<CreateProjectModal />}
+            />
             <div className='card-container'>
                 {projectList?.map((project) => (
                     <div className='link' key={project.id}>
