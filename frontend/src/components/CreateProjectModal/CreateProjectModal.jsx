@@ -87,7 +87,7 @@ const CreateProjectModal = () => {
                         onChange={(e) => setName(e.target.value)}
                         required
                     />
-                    {errors.name && <p className="error">{errors.name}</p>}
+                    {errors.name && <p className="errors">{errors.name}</p>}
                 </label>
                 <label>
                     Client ID:
@@ -97,7 +97,7 @@ const CreateProjectModal = () => {
                         onChange={(e) => setClientId(e.target.value)}
                         required
                     />
-                    {errors.clientId && <p className="error">{errors.clientId}</p>}
+                    {errors.clientId && <p className="errors">{errors.clientId}</p>}
                 </label>
                 <label>
                     Description:
@@ -106,7 +106,7 @@ const CreateProjectModal = () => {
                         onChange={(e) => setDescription(e.target.value)}
                         required
                     />
-                    {errors.description && <p className="error">{errors.description}</p>}
+                    {errors.description && <p className="errors">{errors.description}</p>}
                 </label>
                 <label>
                     Cover Image:
@@ -116,7 +116,7 @@ const CreateProjectModal = () => {
                         onChange={(e) => setCoverImage(e.target.value)}
                         required
                     />
-                    {errors.coverImage && <p className="error">{errors.coverImage}</p>}
+                    {errors.coverImage && <p className="errors">{errors.coverImage}</p>}
                 </label>
                 <label>
                     Budget:
@@ -126,7 +126,7 @@ const CreateProjectModal = () => {
                         onChange={(e) => setBudget(e.target.value)}
                         required
                     />
-                    {errors.budget && <p className="error">{errors.budget}</p>}
+                    {errors.budget && <p className="errors">{errors.budget}</p>}
                 </label>
                 <label>
                     Commencement Date:
@@ -136,7 +136,7 @@ const CreateProjectModal = () => {
                         onChange={(e) => setCommencementDate(e.target.value)}
                         required
                     />
-                    {errors.commencementDate && <p className="error">{errors.commencementDate}</p>}
+                    {errors.commencementDate && <p className="errors">{errors.commencementDate}</p>}
                 </label>
                 <label>
                     Completion Date:
@@ -146,10 +146,10 @@ const CreateProjectModal = () => {
                         onChange={(e) => setCompletionDate(e.target.value)}
                         required
                     />
-                    {errors.completionDate && <p className="error">{errors.completionDate}</p>}
+                    {errors.completionDate && <p className="errors">{errors.completionDate}</p>}
                 </label>
                 <button type="submit">Save Changes</button>
-                {errors.submit && <p className="error">{errors.submit}</p>}
+                {errors.submit && <p className="errors">{errors.submit}</p>}
             </form>
         </div>
     );
