@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom";
 import { getProject } from "../../store/project";
+import OpenModalButton from "../OpenModalButton";
+import EditProjectModal from "../EditProjectModal";
 
 export default function ProjectDetails() {
     const dispatch = useDispatch();
@@ -42,7 +44,10 @@ export default function ProjectDetails() {
             <p>{project.description}</p>
             <div>
                 <button>Staff</button>
-                <button>Update</button>
+                <OpenModalButton
+                    buttonText="Update"
+                    modalComponent={<EditProjectModal project={project}/>}
+                />
                 <button>Delete</button>
                 <button>Complete</button>
                 <button>Directions</button>

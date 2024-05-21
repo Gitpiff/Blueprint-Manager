@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const GET_ALL_PROJECTS = 'projects/GET_ALL_PROJECTS';
 const GET_PROJECT_DETAILS = 'projects/GET_PROJECT_DETAILS';
+const UPDATE_PROJECT = 'projects/UPDATE_PROJECT';
 
 // Action Creator
 const getAllProjects = (projects) => {
@@ -17,6 +18,13 @@ const getSingleProject = (project) => {
         project
     }
 };
+
+const updateProject = (project) => {
+    return {
+        type: UPDATE_PROJECT,
+        project
+    }
+}
 
 // Thunks
 export const getProjects = () => async (dispatch) => {
@@ -42,6 +50,19 @@ export const getProject = (projectId) => async (dispatch) => {
     }
 };
 
+export const projectUpdate = (project) => async (dispatch) => {
+    const response = await csrfFetch(`/api/projects/${project.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(project)
+    })
+
+    if (response.ok) {
+        const updatedProject = await response.json();
+        dispatch(updateProject(updatedProject));
+        return updatedProject;
+    }
+}
+
 // Reducer
 const projectReducer = (state = {}, action) => {
     switch (action.type) {
@@ -53,6 +74,9 @@ const projectReducer = (state = {}, action) => {
             return projectState; 
         }
         case GET_PROJECT_DETAILS: {
+            return { ...state, [action.project.id]: action.project}
+        }
+        case UPDATE_PROJECT: {
             return { ...state, [action.project.id]: action.project}
         }
         default:

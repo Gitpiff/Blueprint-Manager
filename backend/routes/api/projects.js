@@ -61,7 +61,7 @@ router.get('/:projectId', requireAuth, async (req, res, next) => {
     }
 });
 
-// Update Project -need to refactor 
+// Update Project 
 router.put('/:projectId', requireAuth, async (req, res, next) => {
     const { projectManager } = req;
     try {

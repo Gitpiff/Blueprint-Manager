@@ -6,7 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { SiNginxproxymanager } from "react-icons/si";
 import Footer from '../Footer';
-import ProjectsList from '../ProjectsList';
+//import ProjectsList from '../ProjectsList';
 
 
 function Navigation() {
