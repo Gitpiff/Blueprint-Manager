@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getProject } from "../../store/project";
 import OpenModalButton from "../OpenModalButton";
 import EditProjectModal from "../EditProjectModal";
+import DeleteModal from "../DeleteModal";
 
 export default function ProjectDetails() {
     const dispatch = useDispatch();
@@ -48,7 +49,10 @@ export default function ProjectDetails() {
                     buttonText="Update"
                     modalComponent={<EditProjectModal project={project}/>}
                 />
-                <button>Delete</button>
+                 <OpenModalButton
+                    buttonText="Delete"
+                    modalComponent={<DeleteModal projectId={project.id}/>}
+                />
                 <button>Complete</button>
                 <button>Directions</button>
             </div>

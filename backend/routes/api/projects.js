@@ -96,6 +96,27 @@ router.put('/:projectId', requireAuth, async (req, res, next) => {
     }
 });
 
+// Delete Project
+router.delete('/:projectId', requireAuth, async (req, res, next) => {
+    const { projectManager } = req;
+    try {
+        const project = await Project.findByPk(req.params.projectId);
+
+        if (project) {
+            if (project.projectManagerId !== projectManager.id) {
+                return res.status(403).json({ message: "Unauthorized to delete this project" });
+            }
+
+            await project.destroy();
+            res.status(200).json({ message: "Project Successfully Deleted" });
+        } else {
+            res.status(404).json({ message: "Project not found" });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
+
 // Get All Projects of Current PM
 // router.get('/current', requireAuth, async (req, res, next) => {
 //     const { projectManager } = req;
@@ -177,26 +198,7 @@ router.put('/:projectId', requireAuth, async (req, res, next) => {
 
 
 
-// Delete Project
-// router.delete('/:projectId', requireAuth, async (req, res, next) => {
-//     const { projectManager } = req;
-//     try {
-//         const project = await Project.findByPk(req.params.projectId);
 
-//         if (project) {
-//             if (project.projectManagerId !== projectManager.id) {
-//                 return res.status(403).json({ message: "Unauthorized to delete this project" });
-//             }
-
-//             await project.destroy();
-//             res.status(200).json({ message: "Project Successfully Deleted" });
-//         } else {
-//             res.status(404).json({ message: "Project not found" });
-//         }
-//     } catch (error) {
-//         next(error);
-//     }
-// });
 
 module.exports = router;
 

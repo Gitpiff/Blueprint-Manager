@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf';
 const GET_ALL_PROJECTS = 'projects/GET_ALL_PROJECTS';
 const GET_PROJECT_DETAILS = 'projects/GET_PROJECT_DETAILS';
 const UPDATE_PROJECT = 'projects/UPDATE_PROJECT';
+const DELETE_PROJECT = 'projects/DELETE_PROJECT';
 
 // Action Creator
 const getAllProjects = (projects) => {
@@ -24,7 +25,14 @@ const updateProject = (project) => {
         type: UPDATE_PROJECT,
         project
     }
-}
+};
+
+const removeProject = (project) => {
+    return {
+        type: DELETE_PROJECT,
+        project
+    }
+};
 
 // Thunks
 export const getProjects = () => async (dispatch) => {
@@ -61,6 +69,16 @@ export const projectUpdate = (project) => async (dispatch) => {
         dispatch(updateProject(updatedProject));
         return updatedProject;
     }
+};
+
+export const deleteProject = (projectId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/projects/${projectId}`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        dispatch(removeProject(projectId))
+    }
 }
 
 // Reducer
@@ -78,6 +96,11 @@ const projectReducer = (state = {}, action) => {
         }
         case UPDATE_PROJECT: {
             return { ...state, [action.project.id]: action.project}
+        }
+        case DELETE_PROJECT: {
+            const newState = {...state};
+            delete newState[action.project.id];
+            return newState;
         }
         default:
             return state;

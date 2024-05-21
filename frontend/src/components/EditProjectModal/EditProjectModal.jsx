@@ -22,11 +22,7 @@ function EditProjectModal({project}) {
     useEffect(() => {
         if (!project) {
             dispatch(sessionActions.getProject(project.id));
-        }
-    }, [dispatch, project]);
-
-    useEffect(() => {
-        if (project) {
+        } else {
             setName(project.name);
             setClientId(project.clientId);
             setDescription(project.description);
@@ -35,7 +31,7 @@ function EditProjectModal({project}) {
             setCommencementDate(project.commencementDate);
             setCompletionDate(project.completionDate);
         }
-    }, [project]);
+    }, [dispatch, project]);
 
     const validate = () => {
         const errors = {};
