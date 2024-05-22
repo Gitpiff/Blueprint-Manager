@@ -4,10 +4,11 @@ import { FaHelmetSafety } from "react-icons/fa6";
 import * as sessionActions from '../../store/session';
 import { useNavigate } from 'react-router-dom';
 import './Navigation.css'
+//import { useSelector } from 'react-redux';
 
 const ProfileButton = ({ projectManager }) => {
   const navigate = useNavigate();
-
+  //const sessionProjectManager = useSelector((state) => state.session.projectManager);
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();

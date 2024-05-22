@@ -8,6 +8,8 @@ import CreateProjectModal from '../CreateProjectModal';
 const ProjectsList = () => {
     const dispatch = useDispatch();
     const projectList = useSelector((state) => Object.values(state.project));
+    //const sessionProjectManager = useSelector((state) => Object.values(state.projectManager));
+
     //console.log(projectList);
 
     useEffect(() => {

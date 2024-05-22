@@ -19,6 +19,7 @@ function Navigation() {
 
     let sessionLinks;
     if(sessionProjectManager) {
+      console.log(sessionProjectManager)
       sessionLinks = (
         <>
           <header>
