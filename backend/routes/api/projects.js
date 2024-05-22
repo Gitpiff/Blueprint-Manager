@@ -65,14 +65,14 @@ router.get('/:projectId', requireAuth, async (req, res, next) => {
 router.put('/:projectId', requireAuth, async (req, res, next) => {
     const { projectManager } = req;
     try {
-        const { name, clientId, description, budget, commencementDate, completionDate, coverImage } = req.body;
+        const { name, clientId, description, budget, commencementDate, completionDate, coverImage, projectManagerId } = req.body;
         const project = await Project.findByPk(req.params.projectId);
 
         if (project) {
             if (project.projectManagerId !== projectManager.id) {
                 return res.status(403).json({ message: "Unauthorized to update this project" });
             }
-
+            projectManager.id = projectManagerId;
             project.name = name;
             project.clientId = clientId;
             project.description = description;

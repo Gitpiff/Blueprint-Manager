@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const pmsRouter = require('./projectmanagers.js');
 const projectRouter = require('./projects.js');
+const employeeRouter = require('./employees.js');
 const { restoreUser } = require("../../utils/auth.js");
 
 // Connect restoreUser middleware to the API router
@@ -14,6 +15,8 @@ router.use('/session', sessionRouter);
 router.use('/projectmanagers', pmsRouter);
 
 router.use('/projects', projectRouter);
+
+router.use('/employees', employeeRouter);
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });
