@@ -71,12 +71,9 @@ router.post('/new', validateStaff, async (req, res, next) => {
         const newEmployee = await Staff.create({ firstName, lastName, picture, hireDate, role, salary });
         res.status(201).json(newEmployee);
     } catch (error) {
-        console.log(error)
-        next({
-            message: "Bad Request",
-            status: 400,
-            stack: error.stack
-        });
+        error.message = "Bad Request"
+        error.status = 400
+        next(error)
     }
 });
 

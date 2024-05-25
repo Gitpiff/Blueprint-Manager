@@ -26,6 +26,18 @@ export default function ProjectDetails() {
         }
     }, [dispatch, projectId]);
 
+    const daysLeft = (commencementDate, completionDate) => {
+        const startDate = new Date(commencementDate);
+        const endDate = new Date(completionDate);
+
+        const timeDifference = endDate - startDate;
+
+        const daysLeft = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+        return daysLeft;
+    }
+
+
     if (!project) {
         return <p>Loading project details...</p>; 
     }
@@ -33,7 +45,7 @@ export default function ProjectDetails() {
     return ( project && 
         <>
         <nav className="projectNav">
-            <h2>Days to Completion</h2>
+            <h2>There are {daysLeft(project.commencementDate, project.completionDate)} days left!</h2>
             <h2>{project.name}</h2>
             <h2>{project.clientId}</h2>
             <h2>{project.budget}</h2>
