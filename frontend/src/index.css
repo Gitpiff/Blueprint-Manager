@@ -142,4 +142,27 @@ a {
     align-items: center;
     background-color: white;
 }
-  
+
+.employeeCard {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.employeeCardBtns {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.carousel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.carouselIcon {
+    font-size: xxx-large;
+    
+}

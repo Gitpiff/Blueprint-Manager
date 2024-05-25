@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import Navigation from '../Navigation';
 import * as sessionActions from '../../store/session';
 import Footer from '../Footer';
+import { Modal } from '../../context/Modal';
 //import { Navigate } from 'react-router-dom';
 
 function Layout() {
@@ -23,6 +24,7 @@ function Layout() {
       <>
         <Navigation isLoaded={isLoaded} />
         {isLoaded}
+        <Modal />
         <Footer />
       </>
     );

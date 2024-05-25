@@ -4,6 +4,9 @@ import ProjectsList from './components/ProjectsList';
 import ProjectDetails from './components/ProjectDetails';
 import EditProjectModal from './components/EditProjectModal';
 import CreateProjectModal from './components/CreateProjectModal';
+import EmployeeList from './components/EmployeesList';
+import EditEmployeeModal from './components/EditEmployeeModal';
+import AddEmployeeForm from './components/AddEmployeeForm';
 
 const router = createBrowserRouter([
     {
@@ -27,6 +30,18 @@ const router = createBrowserRouter([
             {
                 path: 'projects/new',
                 element:<CreateProjectModal />
+            },
+            {
+                path: 'employees/',
+                element: <EmployeeList />
+            },
+            {
+                path: 'employees/:id/edit',
+                element: <EditEmployeeModal />
+            },
+            {
+                path: 'employees/new',
+                element: <AddEmployeeForm />
             },
             {
                 path: '*',

@@ -7,15 +7,15 @@ import SignupFormModal from '../SignupFormModal';
 import { SiNginxproxymanager } from "react-icons/si";
 import Footer from '../Footer';
 //import ProjectsList from '../ProjectsList';
-import { Navigate } from 'react-router-dom';
+//import { Navigate } from 'react-router-dom';
 
 
 function Navigation() {
     const sessionProjectManager = useSelector((state) => state.session.projectManager);
     console.log(sessionProjectManager)
-    if (sessionProjectManager) {
-      <Navigate to='/projects' />
-    }
+    // if (sessionProjectManager) {
+    //   return (<Navigate to='/projects' />)
+    // }
 
     let sessionLinks;
     if(sessionProjectManager) {

@@ -5,6 +5,7 @@ import { getProject } from "../../store/project";
 import OpenModalButton from "../OpenModalButton";
 import EditProjectModal from "../EditProjectModal";
 import DeleteModal from "../DeleteModal";
+import EmployeeList from "../EmployeesList";
 
 export default function ProjectDetails() {
     const dispatch = useDispatch();
@@ -44,11 +45,16 @@ export default function ProjectDetails() {
             <h3>Description</h3>
             <p>{project.description}</p>
             <div>
-                <button>Staff</button>
+                <OpenModalButton
+                    buttonText="Staff"
+                    modalComponent={<EmployeeList />}
+                />
+                
                 <OpenModalButton
                     buttonText="Update"
                     modalComponent={<EditProjectModal project={project}/>}
                 />
+                
                  <OpenModalButton
                     buttonText="Delete"
                     modalComponent={<DeleteModal projectId={project.id}/>}
