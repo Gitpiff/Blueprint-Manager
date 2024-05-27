@@ -129,7 +129,7 @@ a {
     background-color: azure;
     opacity: .7;
     color: black;
-    height: 100vh;
+    height: 1000px;
 }
 
 .activeProjects {
@@ -238,4 +238,19 @@ a {
     height: 50px;
     width: 100px;
     align-self: center;
+}
+
+
+    
+.hover-saturation {
+    transition: filter 0.3s ease; 
+    filter: saturate(1); 
+}
+
+.hover-saturation:hover {
+    filter: saturate(5); 
+}
+
+.hover-saturation:hover {
+    cursor: pointer;
 }

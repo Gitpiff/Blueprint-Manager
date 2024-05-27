@@ -78,7 +78,7 @@ export default function ProjectDetails() {
 
         <div className="projectCard">
             <h1>{project.name}</h1>
-            <img style={{height: '400px', width: '400px'}} src={project.coverImage} alt={project.name} />
+            <img className="hover-saturation" style={{height: '500px', width: '500px'}} src={project.coverImage} alt={project.name} />
             <h3>Description</h3>
             <p>{project.description}</p>
             <div>

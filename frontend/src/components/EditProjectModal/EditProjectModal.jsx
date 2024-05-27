@@ -111,9 +111,9 @@ function EditProjectModal({project}) {
                     {errors.name && <p className="errors">{errors.name}</p>}
                 </label>
                 <label>
-                    Client ID:
+                    Client Name:
                     <input
-                        type="number"
+                        type="text"
                         value={clientName}
                         onChange={(e) => setClientName(e.target.value)}
                         required

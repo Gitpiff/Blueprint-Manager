@@ -53,7 +53,7 @@ const ProjectsList = () => {
                                 <h2>Client Name: {project.clientName}</h2>
                                 <h3>Start Date: {getYearMonthDay(project.commencementDate)}</h3>
                                 <h3>Completion Date: {getYearMonthDay(project.completionDate)}</h3>
-                                <img className="card-image" src={project.coverImage} alt={project.name}/>
+                                <img className="card-image hover-saturation" src={project.coverImage} alt={project.name}/>
                             </div>
                         </Link>
                     </div>

@@ -79,6 +79,7 @@ const CreateProjectModal = () => {
 
     return (
         <div style={{backgroundColor: '#001f3f'}} className='login-modal'>
+            <h1>New Project</h1>
             <form className="form" onSubmit={handleSubmit}>
                 <label>
                     Project Name:
@@ -149,7 +150,7 @@ const CreateProjectModal = () => {
                     />
                     {errors.completionDate && <p className="errors">{errors.completionDate}</p>}
                 </label>
-                <button type="submit">Save Changes</button>
+                <button type="submit">Save</button>
                 {errors.submit && <p className="errors">{errors.submit}</p>}
             </form>
         </div>
