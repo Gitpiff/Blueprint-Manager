@@ -18,7 +18,7 @@ const validateProject = [
         .withMessage('Client Id is required'),
     check('description')
         .exists({ checkFalsy: true })
-        .isLength({ min: 30 })
+        .isLength({ min: 30, max: 2000 })
         .withMessage('Project Description must have between 30 and 2000 characters'),
     check('budget')
         .exists({ checkFalsy: true })
