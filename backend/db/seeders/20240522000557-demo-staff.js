@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'production') {
 const demoEmployees = [
   {
     firstName: 'Oscar',
-    lastname: 'Robles',
+    lastName: 'Robles',
     picture: 'https://images.pexels.com/photos/73833/weld-hot-soldering-radio-welder-73833.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     hireDate: new Date('2024-05-01'),
     role: 'Welder',
@@ -16,7 +16,7 @@ const demoEmployees = [
   },
   {
     firstName: 'John',
-    lastname: 'Doe',
+    lastName: 'Doe',
     picture: 'https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     hireDate: new Date('2024-05-01'),
     role: 'Concret Pump Operator',
@@ -24,7 +24,7 @@ const demoEmployees = [
   },
   {
     firstName: 'Sydney',
-    lastname: 'Barnes',
+    lastName: 'Barnes',
     picture: 'https://images.pexels.com/photos/4491475/pexels-photo-4491475.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     hireDate: new Date('2024-05-01'),
     role: 'Interior Designer',
@@ -32,7 +32,7 @@ const demoEmployees = [
   },
   {
     firstName: 'Shir',
-    lastname: 'Tabesh',
+    lastName: 'Tabesh',
     picture: 'https://images.pexels.com/photos/1388944/floor-flooring-hand-man-1388944.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     hireDate: new Date('2024-05-01'),
     role: 'Carpenter',

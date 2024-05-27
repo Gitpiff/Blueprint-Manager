@@ -52,8 +52,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         len: { 
-          args: [30, 200], 
-          msg: "Project Description must have between 30 and 200 characters" 
+          args: [30, 2000], 
+          msg: "Project Description must have between 30 and 2000 characters" 
         },
         notEmpty: { 
           msg: "Project Description is required" 

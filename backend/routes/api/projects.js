@@ -19,7 +19,7 @@ const validateProject = [
     check('description')
         .exists({ checkFalsy: true })
         .isLength({ min: 30 })
-        .withMessage('Project Description must have between 30 and 200 characters'),
+        .withMessage('Project Description must have between 30 and 2000 characters'),
     check('budget')
         .exists({ checkFalsy: true })
         .isInt({ min: 500 })

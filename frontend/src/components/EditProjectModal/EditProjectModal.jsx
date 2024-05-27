@@ -42,8 +42,8 @@ function EditProjectModal({project}) {
         if (!clientName) {
             errors.clientName = 'Client Name is required';
         }
-        if (description.length < 30 || description.length > 200) {
-            errors.description = 'Project Description must be between 30 and 200 characters';
+        if (description.length < 30 || description.length > 2000) {
+            errors.description = 'Project Description must be between 30 and 2000 characters';
         }
         if (!coverImage) {
             errors.coverImage = 'Cover Image is required';
