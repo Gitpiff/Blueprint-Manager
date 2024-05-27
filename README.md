@@ -951,7 +951,7 @@ Returns all the messages that belong to a project specified by id.
       {
         "id": 1,
         "projectId": 1,
-        "clientId": 1,
+        "clientName": "John Smith",
         "projectManagerId": 1,
         "message": "Roof needs to be repaired",
       }
@@ -1112,7 +1112,7 @@ Update and return an existing message.
     {
         "id": 1,
         "projectId": 1,
-        "clientId": 1,
+        "clientName": "John Smith",
         "projectManagerId": 1,
         "message": "Roof needs to be repaired",
         "reply": "Working on it"

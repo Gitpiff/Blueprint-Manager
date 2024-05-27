@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from '../../store/employee';
+import '../SignupFormModal/SignupForm.css'
 
 const AddEmployeeModal = () => {
     const dispatch = useDispatch();
@@ -67,9 +68,9 @@ const AddEmployeeModal = () => {
     };
 
     return (
-        <div style={{ backgroundColor: '#f9f9f9', padding: '20px', borderRadius: '8px' }}>
+        <div style={{backgroundColor: '#001f3f'}} className='login-modal'>
             <h1>Add New Employee</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit}>
                 <label>
                     First Name:
                     <input
@@ -80,7 +81,7 @@ const AddEmployeeModal = () => {
                         required
                     />
                 </label>
-                {errors.firstName && <p className='error'>{errors.firstName}</p>}
+                {errors.firstName && <p className='errors'>{errors.firstName}</p>}
                 <label>
                     Last Name:
                     <input
@@ -91,7 +92,7 @@ const AddEmployeeModal = () => {
                         required
                     />
                 </label>
-                {errors.lastName && <p className='error'>{errors.lastName}</p>}
+                {errors.lastName && <p className='errors'>{errors.lastName}</p>}
                 <label>
                     Picture URL:
                     <input
@@ -102,7 +103,7 @@ const AddEmployeeModal = () => {
                         required
                     />
                 </label>
-                {errors.picture && <p className='error'>{errors.picture}</p>}
+                {errors.picture && <p className='errors'>{errors.picture}</p>}
                 <label>
                     Hire Date:
                     <input
@@ -113,7 +114,7 @@ const AddEmployeeModal = () => {
                         required
                     />
                 </label>
-                {errors.hireDate && <p className='error'>{errors.hireDate}</p>}
+                {errors.hireDate && <p className='errors'>{errors.hireDate}</p>}
                 <label>
                     Role:
                     <input
@@ -124,7 +125,7 @@ const AddEmployeeModal = () => {
                         required
                     />
                 </label>
-                {errors.role && <p className='error'>{errors.role}</p>}
+                {errors.role && <p className='errors'>{errors.role}</p>}
                 <label>
                     Salary:
                     <input
@@ -135,7 +136,7 @@ const AddEmployeeModal = () => {
                         required
                     />
                 </label>
-                {errors.salary && <p className='error'>{errors.salary}</p>}
+                {errors.salary && <p className='errors'>{errors.salary}</p>}
                 <button type="submit">Add New Employee</button>
             </form>
         </div>

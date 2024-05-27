@@ -23,7 +23,7 @@ form > label {
 
 label > input {
     width: 200px;
-    margin: 10px;
+    margin: 20px;
 }
 
 button {
@@ -38,3 +38,4 @@ button {
     display: flex;
     justify-content: center;
 }
+

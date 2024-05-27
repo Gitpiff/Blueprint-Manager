@@ -6,6 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 import EditProjectModal from "../EditProjectModal";
 import DeleteModal from "../DeleteModal";
 import EmployeeList from "../EmployeesList";
+import Footer from "../Footer";
 
 export default function ProjectDetails() {
     const dispatch = useDispatch();
@@ -37,6 +38,14 @@ export default function ProjectDetails() {
         return daysLeft;
     }
 
+    const formatCurrency = (num, locale = 'en-US', currency = 'USD') => {
+        const formatter = new Intl.NumberFormat(locale, {
+            style: 'currency',
+            currency: currency,
+        });
+        return formatter.format(num);
+    }
+
 
     if (!project) {
         return <p>Loading project details...</p>; 
@@ -45,10 +54,25 @@ export default function ProjectDetails() {
     return ( project && 
         <>
         <nav className="projectNav">
-            <h2>There are {daysLeft(project.commencementDate, project.completionDate)} days left!</h2>
-            <h2>{project.name}</h2>
-            <h2>{project.clientId}</h2>
-            <h2>{project.budget}</h2>
+            <div>
+                <h2>Days Until Completion</h2>
+                <h2>{daysLeft(project.commencementDate, project.completionDate)} days left!</h2>
+            </div>
+
+            <div>
+                <h2>Project </h2>
+                <h2>{project.name}</h2>
+            </div>
+
+            <div>
+                <h2>Client Name</h2>
+                <h2>{project.clientName}</h2>
+            </div>
+
+            <div>
+                <h2>Budget</h2>
+                <h2>{formatCurrency(project.budget)}</h2>
+            </div>
         </nav>
 
         <div className="projectCard">
@@ -58,7 +82,7 @@ export default function ProjectDetails() {
             <p>{project.description}</p>
             <div>
                 <OpenModalButton
-                    buttonText="Staff"
+                    buttonText="Active Staff"
                     modalComponent={<EmployeeList />}
                 />
                 
@@ -71,11 +95,11 @@ export default function ProjectDetails() {
                     buttonText="Delete"
                     modalComponent={<DeleteModal projectId={project.id}/>}
                 />
-                <button>Complete</button>
-                <button>Directions</button>
+                {/* <button>Complete</button>
+                <button>Directions</button> */}
             </div>
         </div>
-
+        <Footer />
         </>
     )
 }

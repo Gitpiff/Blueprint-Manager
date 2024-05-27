@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GiPlayerPrevious, GiPlayerNext } from "react-icons/gi";
+import { FaLongArrowAltLeft, FaLongArrowAltRight  } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getEmployees } from "../../store/employee";
 import OpenModalButton from "../OpenModalButton";
@@ -48,27 +48,36 @@ const EmployeeList = () => {
         return `${year}-${month}-${day}`;
     };
 
+    const formatCurrency = (num, locale = 'en-US', currency = 'USD') => {
+        const formatter = new Intl.NumberFormat(locale, {
+            style: 'currency',
+            currency: currency,
+        });
+        return formatter.format(num);
+    }
+
     return (
         employee && (
             <>
                 <div className="employeeCard">
                     <OpenModalButton
+                        className= "addEmployeeBtn"
                         buttonText='Add New Employee'
                         modalComponent={<AddEmployeeForm />}
                     />
-                    <button onClick={getPrev}><GiPlayerPrevious className="carouselIcon" /></button>
-                    <button onClick={getNext}><GiPlayerNext className="carouselIcon" /></button>
                     
                     <div>
                         <div className="card-container">
+                        <button style={{height: '100px'}} onClick={getPrev}><FaLongArrowAltLeft className="carouselIcon" /></button>
                             <div className="card">
                                 <img className="card-image" src={employee.picture} alt={employee.name} />
                                 <h3>First Name: {employee.firstName}</h3>
                                 <h3>Last Name: {employee.lastName}</h3>
                                 <h3>Hire Date: {getYearMonthDay(employee.hireDate)}</h3>
                                 <h3>Role: {employee.role}</h3>
-                                <h3>Annual Salary: ${employee.salary}</h3>
+                                <h3>Annual Salary: {formatCurrency(employee.salary)}</h3>
                             </div>
+                        <button style={{height: '100px'}}  onClick={getNext}><FaLongArrowAltRight className="carouselIcon" /></button>
                         </div>
                     </div>
                     <div className="employeeCardBtns">
@@ -77,7 +86,7 @@ const EmployeeList = () => {
                             modalComponent={<EditEmployeeModal employee={employee} />}
                         />
                         <OpenModalButton
-                            buttonText="Delete"
+                            buttonText="Remove"
                             modalComponent={<RemoveEmployeeModal employee={employee} />}
                         />
                     </div>

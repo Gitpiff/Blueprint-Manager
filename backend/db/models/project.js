@@ -36,14 +36,14 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    clientId: {
-      type: DataTypes.INTEGER,
+    clientName: {
+      type: DataTypes.STRING,
       allowNull: false,
       notEmpty: { 
-        msg: "Client Id is required" 
+        msg: "Client Name is required" 
       },
       notNull: {
-        msg: "Client Id is required"
+        msg: "Client Name is required"
       }
     },
     description: {

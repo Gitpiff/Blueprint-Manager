@@ -2,13 +2,14 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from '../../store/project';
+import '../SignupFormModal/SignupForm.css'
 
 
 const CreateProjectModal = () => {
     const dispatch = useDispatch();
 
     const [name, setName] = useState('');
-    const [clientId, setClientId] = useState('');
+    const [clientName, setClientName] = useState('');
     const [description, setDescription] = useState('');
     const [coverImage, setCoverImage] = useState('');
     const [budget, setBudget] = useState('');
@@ -22,15 +23,15 @@ const CreateProjectModal = () => {
         if (name.length < 4 || name.length > 50) {
             errors.name = 'Project Name must be between 4 and 50 characters';
         }
-        if (!clientId) {
-            errors.clientId = 'Client ID is required';
+        if (!clientName) {
+            errors.clientName = 'Client Name is required';
         }
         if (description.length < 30 || description.length > 200) {
             errors.description = 'Project Description must be between 30 and 200 characters';
         }
         if (!coverImage) {
             errors.coverImage = 'Cover Image is required';
-        }
+        } else if (!/^https?:\/\/.+\..+$/.test(coverImage)) errors.coverImage = "Cover Image must be a valid URL";
         if (!budget || budget <= 500) {
             errors.budget = 'Budget must be greater than 500';
         }
@@ -58,7 +59,7 @@ const CreateProjectModal = () => {
         if (validate()) {
             const newProject = {
                 name,
-                clientId,
+                clientName,
                 description,
                 coverImage,
                 budget,
@@ -77,8 +78,8 @@ const CreateProjectModal = () => {
 }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div style={{backgroundColor: '#001f3f'}} className='login-modal'>
+            <form className="form" onSubmit={handleSubmit}>
                 <label>
                     Project Name:
                     <input
@@ -90,14 +91,14 @@ const CreateProjectModal = () => {
                     {errors.name && <p className="errors">{errors.name}</p>}
                 </label>
                 <label>
-                    Client ID:
+                    Client Name:
                     <input
-                        type="number"
-                        value={clientId}
-                        onChange={(e) => setClientId(e.target.value)}
+                        type="text"
+                        value={clientName}
+                        onChange={(e) => setClientName(e.target.value)}
                         required
                     />
-                    {errors.clientId && <p className="errors">{errors.clientId}</p>}
+                    {errors.clientName && <p className="errors">{errors.clientName}</p>}
                 </label>
                 <label>
                     Description:

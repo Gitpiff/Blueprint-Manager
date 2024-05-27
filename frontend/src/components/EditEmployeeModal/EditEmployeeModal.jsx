@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from '../../store/employee';
+import '../SignupFormModal/SignupForm.css'
 
 const EditEmployeeModal = ({ employee }) => {
     const dispatch = useDispatch();
@@ -29,52 +30,30 @@ const EditEmployeeModal = ({ employee }) => {
     }, [dispatch, employee]);
 
     const validate = () => {
-        const errors = {};
-        if (!firstName) errors.firstName = 'First Name is required';
-        else if (firstName.length < 2 || firstName.length > 30) errors.firstName = 'First Name must have between 2 and 30 characters';
+        const newErrors = {};
     
-        if (!lastName) errors.lastName = 'Last Name is required';
-        else if (lastName.length < 2 || lastName.length > 30) errors.lastName = 'Last Name must have between 2 and 30 characters';
+        if (!firstName) newErrors.firstName = "First Name is required";
+        else if (firstName.length < 2 || firstName.length > 30) newErrors.firstName = "First Name must have between 2 and 30 characters";
     
-        if (!hireDate) errors.hireDate = 'Hire Date is required';
-        else if (new Date(hireDate) > new Date()) errors.hireDate = 'Hire Date cannot be in the future';
+        if (!lastName) newErrors.lastName = "Last Name is required";
+        else if (lastName.length < 2 || lastName.length > 30) newErrors.lastName = "Last Name must have between 2 and 30 characters";
     
-        if (!role) errors.role = 'Role is required';
+        if (!picture) newErrors.picture = "Picture is required";
+        else if (!/^https?:\/\/.+\..+$/.test(picture)) newErrors.picture = "Picture must be a valid URL";
+    
+        if (!hireDate) newErrors.hireDate = "Hire Date is required";
+        else if (new Date(hireDate) > new Date()) newErrors.hireDate = "Hire Date cannot be in the future";
+    
+        if (!role) newErrors.role = "Role is required";
+        else if (role.length > 50) newErrors.role = "Role must not be more than 50 characters long";
+    
+        if (!salary) newErrors.salary = "Salary is required";
+        else if (isNaN(salary) || salary < 0) newErrors.salary = "Salary must be a valid integer and not negative";
+    
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+      };
 
-        if (!picture) errors.picture = 'Picture is required';
-    
-        if (!salary) errors.salary = 'Salary is required';
-        else if (isNaN(salary)) errors.salary = 'Salary must be a number';
-    
-        setErrors(errors);
-        return Object.keys(errors).length === 0;
-    };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        switch (name) {
-            case 'firstName':
-                setFirstName(value);
-                break;
-            case 'lastName':
-                setLastName(value);
-                break;
-            case 'picture':
-                setPicture(value);
-                break;
-            case 'hireDate':
-                setHireDate(value);
-                break;
-            case 'role':
-                setRole(value);
-                break;
-            case 'salary':
-                setSalary(value);
-                break;
-            default:
-                break;
-        }
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -104,72 +83,77 @@ const EditEmployeeModal = ({ employee }) => {
     };
 
     return (
-        <div>
+        <div style={{backgroundColor: '#001f3f'}} className='login-modal'>
             <h2>Edit Employee</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>First Name</label>
+            <form className="form" onSubmit={handleSubmit}>
+                <label>
+                    First Name:
                     <input
                         type="text"
                         name="firstName"
                         value={firstName}
-                        onChange={handleChange}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        required
                     />
-                    {errors.firstName && <p>{errors.firstName}</p>}
-                </div>
-                <div>
-                    <label>Last Name</label>
+                </label>
+                {errors.firstName && <p className='errors'>{errors.firstName}</p>}
+                <label>
+                    Last Name:
                     <input
                         type="text"
                         name="lastName"
                         value={lastName}
-                        onChange={handleChange}
+                        onChange={(e) => setLastName(e.target.value)}
+                        required
                     />
-                    {errors.lastName && <p>{errors.lastName}</p>}
-                </div>
-                <div>
-                    <label>Picture URL</label>
+                </label>
+                {errors.lastName && <p className='errors'>{errors.lastName}</p>}
+                <label>
+                    Picture URL:
                     <input
                         type="text"
                         name="picture"
                         value={picture}
-                        onChange={handleChange}
+                        onChange={(e) => setPicture(e.target.value)}
+                        required
                     />
-                    {errors.picture && <p>{errors.picture}</p>}
-                </div>
-                <div>
-                    <label>Hire Date</label>
+                </label>
+                {errors.picture && <p className='errors'>{errors.picture}</p>}
+                <label>
+                    Hire Date:
                     <input
                         type="date"
                         name="hireDate"
                         value={hireDate}
-                        onChange={handleChange}
+                        onChange={(e) => setHireDate(e.target.value)}
+                        required
                     />
-                    {errors.hireDate && <p>{errors.hireDate}</p>}
-                </div>
-                <div>
-                    <label>Role</label>
+                </label>
+                {errors.hireDate && <p className='errors'>{errors.hireDate}</p>}
+                <label>
+                    Role:
                     <input
                         type="text"
                         name="role"
                         value={role}
-                        onChange={handleChange}
+                        onChange={(e) => setRole(e.target.value)}
+                        required
                     />
-                    {errors.role && <p>{errors.role}</p>}
-                </div>
-                <div>
-                    <label>Salary</label>
+                </label>
+                {errors.role && <p className='errors'>{errors.role}</p>}
+                <label>
+                    Salary:
                     <input
                         type="number"
                         name="salary"
                         value={salary}
-                        onChange={handleChange}
+                        onChange={(e) => setSalary(e.target.value)}
+                        required
                     />
-                    {errors.salary && <p>{errors.salary}</p>}
-                </div>
-                <button type="submit">Save</button>
+                </label>
+                {errors.salary && <p className='errors'>{errors.salary}</p>}
+                <button type="submit">Save Changes</button>
             </form>
-            {errors.submit && <p>{errors.submit}</p>}
         </div>
     );
 };

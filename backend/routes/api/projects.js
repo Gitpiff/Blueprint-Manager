@@ -13,7 +13,7 @@ const validateProject = [
         .exists({ checkFalsy: true })
         .isLength({ min:4 })
         .withMessage('Project Name must be less than 50 characters'),
-    check('clientId')
+    check('clientName')
         .exists({ checkFalsy: true })
         .withMessage('Client Id is required'),
     check('description')
@@ -65,7 +65,7 @@ router.get('/:projectId', requireAuth, async (req, res, next) => {
 router.put('/:projectId', requireAuth, async (req, res, next) => {
     const { projectManager } = req;
     try {
-        const { name, clientId, description, budget, commencementDate, completionDate, coverImage, projectManagerId } = req.body;
+        const { name, clientName, description, budget, commencementDate, completionDate, coverImage, projectManagerId } = req.body;
         const project = await Project.findByPk(req.params.projectId);
 
         if (project) {
@@ -74,7 +74,7 @@ router.put('/:projectId', requireAuth, async (req, res, next) => {
             }
             projectManager.id = projectManagerId;
             project.name = name;
-            project.clientId = clientId;
+            project.clientName = clientName;
             project.description = description;
             project.budget = budget;
             project.commencementDate = commencementDate;
@@ -121,12 +121,12 @@ router.delete('/:projectId', requireAuth, async (req, res, next) => {
 router.post('/new', requireAuth, async (req, res, next) => {
     const { projectManager } = req;
     try {
-        const { name, clientId, description, budget, coverImage, commencementDate, completionDate } = req.body;
+        const { name, clientName, description, budget, coverImage, commencementDate, completionDate } = req.body;
 
         if (projectManager) {
             const newProject = await Project.create ({
                 name,
-                clientId,
+                clientName,
                 description,
                 budget,
                 coverImage,

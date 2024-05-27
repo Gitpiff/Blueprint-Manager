@@ -8,7 +8,7 @@ const NewProjectForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
-    clientId: '',
+    clientName: '',
     description: '',
     coverImage: '',
     budget: '',
@@ -55,16 +55,16 @@ const NewProjectForm = () => {
         </label>
         {errors.name && <p className='error'>{errors.name}</p>}
         <label>
-          Client ID:
+          Client Name:
           <input
-            type="number"
-            name="clientId"
-            value={formData.clientId}
+            type="text"
+            name="clientName"
+            value={formData.clientName}
             onChange={handleChange}
             required
           />
         </label>
-        {errors.clientId && <p className='error'>{errors.clientId}</p>}
+        {errors.clientName && <p className='error'>{errors.clientName}</p>}
         <label>
           Description:
           <textarea

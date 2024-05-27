@@ -1,14 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaHelmetSafety } from "react-icons/fa6";
 import * as sessionActions from '../../store/session';
-import { useNavigate } from 'react-router-dom';
 import './Navigation.css'
 //import { useSelector } from 'react-redux';
 
-const ProfileButton = ({ projectManager }) => {
-  const navigate = useNavigate();
-  //const sessionProjectManager = useSelector((state) => state.session.projectManager);
+const ProfileButton = () => {
+  
+  const sessionProjectManager = useSelector((state) => state.session.projectManager);
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -37,7 +36,6 @@ const ProfileButton = ({ projectManager }) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
-    navigate('/')
   };
 
   // const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -51,14 +49,16 @@ const ProfileButton = ({ projectManager }) => {
         {showMenu && (
           <>
             <ul className='user-toggle' ref={ulRef}>
-              {/* <li>Username: {projectManager.username}</li> */}
-              <li>Name: {projectManager.firstName} {projectManager.lastName}</li>
-              {/* <li>Email: {projectManager.email}</li> */}
-              <li>Company Name: {projectManager.companyName}</li>
-              <li>Industry Sector: {projectManager.industrySector}</li>
+              <li>Email: {sessionProjectManager.email}</li>
+              <li>Username: {sessionProjectManager.username}</li>
+              {/* <li>Username: {projectManager.username}</li>
+              <li>Name: {sessionProjectManager.firstName} {sessionProjectManager.lastName}</li> */}
+              {/* <li>Email: {sessionProjectManager.email}</li> */}
+              {/* <li>Company Name: {sessionProjectManager.companyName}</li>
+              <li>Industry Sector: {sessionProjectManager.industrySector}</li> */}
             </ul>
             <button onClick={logout}>Log Out</button>
-            <button>User Settings</button>
+            {/* <button>User Settings</button> */}
           </>
         )}
       </div>

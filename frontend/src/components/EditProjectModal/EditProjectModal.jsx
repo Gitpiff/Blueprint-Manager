@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 //import { useParams, useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from '../../store/project';
+import '../SignupFormModal/SignupForm.css'
 
 function EditProjectModal({project}) {
     const dispatch = useDispatch();
@@ -10,7 +11,7 @@ function EditProjectModal({project}) {
     console.log(project);
 
     const [name, setName] = useState(project?.name || '');
-    const [clientId, setClientId] = useState(project?.clientId || '');
+    const [clientName, setClientName] = useState(project?.clientName || '');
     const [description, setDescription] = useState(project?.description || '');
     const [coverImage, setCoverImage] = useState(project?.coverImage || '');
     const [budget, setBudget] = useState(project?.budget || '');
@@ -24,7 +25,7 @@ function EditProjectModal({project}) {
             dispatch(sessionActions.getProject(project.id));
         } else {
             setName(project.name);
-            setClientId(project.clientId);
+            setClientName(project.clientName);
             setDescription(project.description);
             setCoverImage(project.coverImage);
             setBudget(project.budget);
@@ -38,8 +39,8 @@ function EditProjectModal({project}) {
         if (name.length < 4 || name.length > 50) {
             errors.name = 'Project Name must be between 4 and 50 characters';
         }
-        if (!clientId) {
-            errors.clientId = 'Client ID is required';
+        if (!clientName) {
+            errors.clientName = 'Client Name is required';
         }
         if (description.length < 30 || description.length > 200) {
             errors.description = 'Project Description must be between 30 and 200 characters';
@@ -74,7 +75,7 @@ function EditProjectModal({project}) {
             const updatedProject = {
                 id: project.id,
                 name,
-                clientId,
+                clientName,
                 description,
                 coverImage,
                 budget,
@@ -96,8 +97,9 @@ function EditProjectModal({project}) {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div style={{backgroundColor: '#001f3f'}} className='login-modal'>
+            <h1>Edit Project</h1>
+            <form className="form" onSubmit={handleSubmit}>
                 <label>
                     Project Name:
                     <input
@@ -106,17 +108,17 @@ function EditProjectModal({project}) {
                         onChange={(e) => setName(e.target.value)}
                         required
                     />
-                    {errors.name && <p className="error">{errors.name}</p>}
+                    {errors.name && <p className="errors">{errors.name}</p>}
                 </label>
                 <label>
                     Client ID:
                     <input
                         type="number"
-                        value={clientId}
-                        onChange={(e) => setClientId(e.target.value)}
+                        value={clientName}
+                        onChange={(e) => setClientName(e.target.value)}
                         required
                     />
-                    {errors.clientId && <p className="error">{errors.clientId}</p>}
+                    {errors.clientName && <p className="errors">{errors.clientName}</p>}
                 </label>
                 <label>
                     Description:
@@ -125,7 +127,7 @@ function EditProjectModal({project}) {
                         onChange={(e) => setDescription(e.target.value)}
                         required
                     />
-                    {errors.description && <p className="error">{errors.description}</p>}
+                    {errors.description && <p className="errors">{errors.description}</p>}
                 </label>
                 <label>
                     Cover Image:
@@ -135,7 +137,7 @@ function EditProjectModal({project}) {
                         onChange={(e) => setCoverImage(e.target.value)}
                         required
                     />
-                    {errors.coverImage && <p className="error">{errors.coverImage}</p>}
+                    {errors.coverImage && <p className="errors">{errors.coverImage}</p>}
                 </label>
                 <label>
                     Budget:
@@ -145,7 +147,7 @@ function EditProjectModal({project}) {
                         onChange={(e) => setBudget(e.target.value)}
                         required
                     />
-                    {errors.budget && <p className="error">{errors.budget}</p>}
+                    {errors.budget && <p className="errors">{errors.budget}</p>}
                 </label>
                 <label>
                     Commencement Date:
@@ -155,7 +157,7 @@ function EditProjectModal({project}) {
                         onChange={(e) => setCommencementDate(e.target.value)}
                         required
                     />
-                    {errors.commencementDate && <p className="error">{errors.commencementDate}</p>}
+                    {errors.commencementDate && <p className="errors">{errors.commencementDate}</p>}
                 </label>
                 <label>
                     Completion Date:
@@ -165,10 +167,10 @@ function EditProjectModal({project}) {
                         onChange={(e) => setCompletionDate(e.target.value)}
                         required
                     />
-                    {errors.completionDate && <p className="error">{errors.completionDate}</p>}
+                    {errors.completionDate && <p className="errors">{errors.completionDate}</p>}
                 </label>
                 <button type="submit">Save Changes</button>
-                {errors.submit && <p className="error">{errors.submit}</p>}
+                {errors.submit && <p className="errors">{errors.submit}</p>}
             </form>
         </div>
     );

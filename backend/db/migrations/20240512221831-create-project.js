@@ -13,8 +13,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      clientId: {
-        type: Sequelize.INTEGER,
+      clientName: {
+        type: Sequelize.STRING,
         allowNull: false
       },
       description: {
