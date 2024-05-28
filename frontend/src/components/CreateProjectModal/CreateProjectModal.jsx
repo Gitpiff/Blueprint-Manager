@@ -3,11 +3,12 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from '../../store/project';
 import '../SignupFormModal/SignupForm.css'
+import { useNavigate } from "react-router-dom";
 
 
 const CreateProjectModal = () => {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [clientName, setClientName] = useState('');
     const [description, setDescription] = useState('');
@@ -67,7 +68,10 @@ const CreateProjectModal = () => {
                 completionDate
             }
         dispatch(sessionActions.createProject(newProject))
-            .then(closeModal)
+            .then(() => {
+                closeModal()
+                navigate('/projects')
+            })
             .catch(async (res) => {
                 const data = await res.json();
                 if (data?.errors) {

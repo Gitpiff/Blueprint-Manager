@@ -149,29 +149,29 @@ router.post('/new', requireAuth, async (req, res, next) => {
 })
 
 // Get All Projects of Current PM
-// router.get('/current', requireAuth, async (req, res, next) => {
-//     const { projectManager } = req;
+router.get('/current', requireAuth, async (req, res, next) => {
+    const { projectManager } = req;
 
-//     if(!projectManager) {
-//         return res.status(401).json({
-//             message: 'Authentication Required'
-//         })
-//     };
+    if(!projectManager) {
+        return res.status(401).json({
+            message: 'Authentication Required'
+        })
+    };
 
-//     const projects = await Project.findAll({
-//         where: {
-//             projectManagerId: projectManager.id
-//         }
-//     })
-//     res.status(200).json(projects);
+    const projects = await Project.findAll({
+        where: {
+            projectManagerId: projectManager.id
+        }
+    })
+    res.status(200).json(projects);
 
-//     if (!projects) {
-//         return res.status(404).json({
-//             message: 'Projects could not be found'
-//         })
-//     };
+    if (!projects) {
+        return res.status(404).json({
+            message: 'Projects could not be found'
+        })
+    };
 
-// })
+})
 
 // Get Projects by Project Manager ID
 // router.get('/projects/:projectManagerId', requireAuth, async (req, res, next) => {

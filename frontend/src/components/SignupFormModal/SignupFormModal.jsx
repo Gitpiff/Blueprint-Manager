@@ -3,9 +3,11 @@ import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import * as sessionActions from '../../store/session';
 import './SignupForm.css';
+//import { useNavigate } from 'react-router-dom';
 
 function SignupFormModal() {
     const dispatch = useDispatch();
+    //const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
@@ -32,13 +34,14 @@ function SignupFormModal() {
             password
             })
           )
-          .then(closeModal)
-          .catch(async (res) => {
-            const data = await res.json();
-            if (data?.errors) {
-              setErrors(data.errors);
+          .then((response) => {
+            if(response.errors) {
+              setErrors(response.errors)
+            } else {
+              closeModal()
+              //navigate('/projects')
             }
-          });
+          })
         }
       };
 

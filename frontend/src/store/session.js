@@ -59,7 +59,7 @@ export const signup = (projectManager) => async (dispatch) => {
     });
     const data = await response.json();
     console.log(data);
-    dispatch(setProjectManager(data.projectManager));
+    dispatch(setProjectManager(data));
     return response;
 };
 

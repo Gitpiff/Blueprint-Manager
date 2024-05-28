@@ -198,6 +198,7 @@ a {
     opacity: .9;
     font-size: large;
     font-weight: bold;
+    margin: auto;
 }
 
 .home-buttons > button:hover {

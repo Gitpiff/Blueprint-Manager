@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-// import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 import ProjectsList from './components/ProjectsList';
 import ProjectDetails from './components/ProjectDetails';
@@ -14,6 +13,7 @@ import { restoreProjectManager } from './store/session';
 import LandingPage from './components/LandingPage/LandingPage';
 import SignupFormModal from './components/SignupFormModal/SignupFormModal';
 import LoginFormModal from './components/LoginFormModal/LoginFormModal';
+import { Modal } from './context/Modal';
 
 function Layout() {
     const dispatch = useDispatch();
@@ -30,6 +30,7 @@ function Layout() {
         <Navigation isLoaded={isLoaded} />
         <div>
           {isLoaded && <Outlet />}
+          <Modal />
         </div>
       </>
     );

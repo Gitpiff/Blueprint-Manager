@@ -122,10 +122,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: {
-          args: [2, 30],
-          msg: "Password must have between 2 and 30 characters"
-        },
         notEmpty: { 
           msg: "Password is required" 
         },

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import { useModal } from '../../context/Modal';
 import './LoginForm.css';
 
 function LoginFormModal() {
   const dispatch = useDispatch();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -17,23 +17,15 @@ function LoginFormModal() {
     e.preventDefault();
     setErrors({});
 
-    const userLogin = sessionActions.login({ credential, password });
-
-    return userLogin.then(async (res) => {
-      const data = await res.payload;
-      if(data) setErrors(data)
-    })
-
-
-    // return dispatch(sessionActions.login({ credential, password }))
-    //   .then(closeModal)
-    //   //.then(() => navigate("/projects"))
-    //   .catch(async (res) => {
-    //     const data = await res.json();
-    //     if (data && data.errors) {
-    //       setErrors(data.errors);
-    //     }
-    //   });
+    return dispatch(sessionActions.login({ credential, password }))
+      .then((response) => {
+        if(response.errors) {
+          setErrors(response.errors)
+        } else {
+          closeModal()
+          navigate('/projects')
+        }
+      })
   };
 
   const demoUser = (e) => {
