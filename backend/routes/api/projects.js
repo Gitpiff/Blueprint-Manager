@@ -6,6 +6,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Project } = require('../../db/models');
 
+
 const router = express.Router();
 
 const validateProject = [
@@ -159,9 +160,14 @@ router.get('/current', requireAuth, async (req, res, next) => {
     };
 
     const projects = await Project.findAll({
-        where: {
-            projectManagerId: projectManager.id
-        }
+       include: [
+            {
+                model: Project
+            }
+       ],
+       where: {
+        projectManagerId: projectManager.id
+       }
     })
     res.status(200).json(projects);
 
@@ -174,27 +180,27 @@ router.get('/current', requireAuth, async (req, res, next) => {
 })
 
 // Get Projects by Project Manager ID
-// router.get('/projects/:projectManagerId', requireAuth, async (req, res, next) => {
-//     try {
-//         const { projectManagerId } = req.params;
+router.get('/:projectManagerId', requireAuth, async (req, res, next) => {
+    try {
+        const { projectManagerId } = req.params;
 
-//         const projects = await Project.findAll({
-//             where: {
-//                 projectManagerId
-//             }
-//         });
+        const projects = await Project.findAll({
+            where: {
+                projectManagerId
+            }
+        });
 
-//         if (projects.length > 0) {
-//             res.status(200).json(projects);
-//         } else {
-//             res.status(404).json({
-//                 message: 'Projects could not be found'
-//             });
-//         }
-//     } catch (error) {
-//         next(error);
-//     }
-// });
+        if (projects.length > 0) {
+            res.status(200).json(projects);
+        } else {
+            res.status(404).json({
+                message: 'Projects could not be found'
+            });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
 
 
 

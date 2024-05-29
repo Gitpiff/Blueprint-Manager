@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      ProjectManager,this.hasMany(models.Project, {
+        foreignKey: 'projectManagerId',
+        onDelete: 'CASCADE',
+        hooks: true
+      })
     }
   }
   ProjectManager.init({

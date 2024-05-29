@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Project.belongsTo(models.ProjectManager, {
+        foreignKey: 'projectManagerId'
+      })
     }
   }
   Project.init({

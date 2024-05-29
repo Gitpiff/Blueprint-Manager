@@ -21,18 +21,18 @@ const LandingPage = () => {
             <Link className="logo" to='/'><SiNginxproxymanager /></Link>
         </header>
         <div className="home-body">
-            <div className="home-buttons">
-                <OpenModalButton 
-                    buttonText="Log In"
-                    modalComponent={<LoginFormModal />}
-                />
-                {/* <LoginFormModal projectManager={sessionProjectManager}/> */}
-
-                <OpenModalButton 
-                    buttonText="Signup"
-                    modalComponent={<SignupFormModal />}
-                />   
-            </div>
+            
+            <OpenModalButton 
+                className="homeBtn"
+                buttonText="Log In"
+                modalComponent={<LoginFormModal />}
+            />
+            <OpenModalButton 
+                className="homeBtn"
+                buttonText="Signup"
+                modalComponent={<SignupFormModal />}
+            />   
+          
         </div>
         <footer>
             <Footer />

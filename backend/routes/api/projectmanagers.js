@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
-const { ProjectManager } = require('../../db/models');
+const { ProjectManager, Project } = require('../../db/models');
 const router = express.Router();
 
 // Validation middleware for creating and updating Project Manager
@@ -181,5 +181,28 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
     next(error);
   }
 });
+
+// Get Current PM Projects
+router.get('/:id/projects', requireAuth, async (req, res, next) => {
+  try {
+    const { projectManagerId } = req.params;
+
+    const projects = await Project.findAll({
+        where: {
+            projectManagerId
+        }
+    });
+
+    if (projects.length > 0) {
+        res.status(200).json(projects);
+    } else {
+        res.status(404).json({
+            message: 'Projects could not be found'
+        });
+    }
+} catch (error) {
+    next(error);
+}
+})
 
 module.exports = router;

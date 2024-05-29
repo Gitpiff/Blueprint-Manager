@@ -57,10 +57,15 @@ export const signup = (projectManager) => async (dispatch) => {
             password
         })
     });
-    const data = await response.json();
-    console.log(data);
-    dispatch(setProjectManager(data));
-    return response;
+    if(response.ok) {
+        const data = await response.json();
+        console.log(data)
+        dispatch(setProjectManager(data.projectManager));
+        return response
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
 };
 
 export const logout = () => async (dispatch) => {

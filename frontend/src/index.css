@@ -189,17 +189,6 @@ a {
     margin-top: 40%;
 }
 
-.home-buttons > button {
-    margin: 7px;
-    height: 100px;
-    width: 250px;
-    align-self: center;
-    background-color: slategray;
-    opacity: .9;
-    font-size: large;
-    font-weight: bold;
-    margin: auto;
-}
 
 .home-buttons > button:hover {
     cursor: pointer;
@@ -242,7 +231,6 @@ a {
 }
 
 
-    
 .hover-saturation {
     transition: filter 0.3s ease; 
     filter: saturate(1); 
@@ -255,3 +243,26 @@ a {
 .hover-saturation:hover {
     cursor: pointer;
 }
+
+.home-body {
+    display: block;
+    position: relative;
+    margin-left: 43%;
+    margin-top: 15%;
+}
+
+.home-body > button {
+    background-color: #001f3f;
+    color: azure;
+    font-size: x-large;
+    font-family: auto;
+    height: 100px;
+    width: 200px;
+}
+
+.home-body > button:hover {
+    cursor: pointer;
+    background-color: azure;
+    color: black;
+}
+
