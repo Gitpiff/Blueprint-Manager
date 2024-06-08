@@ -12,8 +12,6 @@
 .form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: 15px;
 }
 
@@ -22,7 +20,7 @@ form > label {
 }
 
 label > input {
-   width: auto;
+   width: -webkit-fill-available;
     margin: 10px;
 }
 
