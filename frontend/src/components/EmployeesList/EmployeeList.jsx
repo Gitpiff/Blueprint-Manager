@@ -60,11 +60,12 @@ const EmployeeList = () => {
         employee && (
             <>
                 <div className="employeeCard">
-                    <OpenModalButton
-                        className= "addEmployeeBtn"
-                        buttonText='Add New Employee'
-                        modalComponent={<AddEmployeeForm />}
-                    />
+                    <div className="addEmployeeBtn">
+                        <OpenModalButton
+                            buttonText='Add New Employee'
+                            modalComponent={<AddEmployeeForm />}
+                        />
+                    </div>
                     
                     <div>
                         <div className="card-container">
