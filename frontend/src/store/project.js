@@ -45,7 +45,7 @@ const addProject = (project) => {
 // Thunks
 export const getProjects = () => async (dispatch) => {
     const response = await csrfFetch('/api/projects');
-    console.log(`Thunk response ${response}`)
+    //console.log(`Thunk response ${response}`)
     if (response.ok) {
         const projects = await response.json();
         dispatch(getAllProjects(projects));
@@ -54,11 +54,11 @@ export const getProjects = () => async (dispatch) => {
 
 export const getProject = (projectId) => async (dispatch) => {
     const response = await csrfFetch(`/api/projects/${projectId}`)
-    console.log(`get project ${response}`)
+    //console.log(`get project ${response}`)
 
     if (response.ok) {
         const project = await response.json();
-        console.log(`store ${project}`)
+        //console.log(`store ${project}`)
         dispatch(getSingleProject(project))
     } else {
         const errors = await response.json();

@@ -8,7 +8,7 @@ import DeleteModal from "../DeleteModal";
 import EmployeeList from "../EmployeesList";
 import Footer from "../Footer";
 import CalculatorModal from "../Calculator/Calculator";
-import Map from "../Map";
+// import Map from "../Map";
 
 export default function ProjectDetails() {
     const dispatch = useDispatch();
@@ -110,9 +110,9 @@ export default function ProjectDetails() {
                         <CalculatorModal />
                     </div>
                     <img className="hover-saturation" style={{ height: '500px', width: '500px' }} src={project.coverImage} alt={project.name} />
-                    <div style={{width: "400px"}}>
+                    {/* <div style={{width: "400px"}}>
                         <Map />
-                    </div>
+                    </div> */}
                 </div>
                 <h3>Description</h3>
                 <p>{project.description}</p>

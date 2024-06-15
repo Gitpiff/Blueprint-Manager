@@ -8,7 +8,7 @@ import '../SignupFormModal/SignupForm.css'
 function EditProjectModal({project}) {
     const dispatch = useDispatch();
     //const navigate = useNavigate();
-    console.log(project);
+    //console.log(project);
 
     const [name, setName] = useState(project?.name || '');
     const [clientName, setClientName] = useState(project?.clientName || '');
