@@ -105,10 +105,10 @@ button:hover {
     border: solid;
     padding: 20px;
     margin: 30px; 
-    background-color: slategray;
+    background-color: white;
     opacity: .9;
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 .card:hover{
@@ -121,6 +121,7 @@ button:hover {
     width: 300px;
     margin: auto;
     border: 1px solid white;
+    border-radius: 20%;
 }
 
 a {
@@ -154,6 +155,19 @@ a {
     justify-content: center;
 }
 
+.calc-img-container {
+    display: flex;
+    align-items: flex-end;
+    /* padding: 20px; */
+    margin: 20px; 
+}
+
+.calc-img-container > div {
+    margin: 30px;
+}
+
+
+
 .projectNav {
     display: flex;
     flex-direction: row;
@@ -161,7 +175,7 @@ a {
     text-decoration: none;
     width: auto;
     align-content: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     background-color: white;
 }
@@ -181,7 +195,8 @@ a {
 }
 
 .employeeCardBtns > button:hover {
-    background-color: green;
+    background-color: darkorange;
+    color: white;
     cursor: pointer;
 }
 
@@ -256,6 +271,12 @@ a {
     align-self: center;
 }
 
+.addEmployeeBtn > button:hover {
+    cursor: pointer;
+    background-color: green;
+    color: white;
+}
+
 
 .hover-saturation {
     transition: filter 0.3s ease; 
@@ -293,3 +314,30 @@ a {
     color: black;
 }
 
+.trafficLight {
+    width: 70px;
+    height: 150px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.light {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: grey;
+}
+.red { 
+    background-color: red; 
+}
+
+.orange { 
+    background-color: orange; 
+}
+
+.green { 
+    background-color: green; 
+}

@@ -72,11 +72,11 @@ const EmployeeList = () => {
                         <button style={{height: '100px'}} onClick={getPrev}><FaLongArrowAltLeft className="carouselIcon" /></button>
                             <div className="card">
                                 <img className="card-image" src={employee.picture} alt={employee.name} />
-                                <h3>First Name: {employee.firstName}</h3>
-                                <h3>Last Name: {employee.lastName}</h3>
-                                <h3>Hire Date: {getYearMonthDay(employee.hireDate)}</h3>
-                                <h3>Role: {employee.role}</h3>
-                                <h3>Annual Salary: {formatCurrency(employee.salary)}</h3>
+                                <h3>First Name : {employee.firstName}</h3>
+                                <h3>Last Name : {employee.lastName}</h3>
+                                <h3>Hire Date : {getYearMonthDay(employee.hireDate)}</h3>
+                                <h3>Role : {employee.role}</h3>
+                                <h3>Annual Salary : {formatCurrency(employee.salary)}</h3>
                             </div>
                         <button style={{height: '100px'}}  onClick={getNext}><FaLongArrowAltRight className="carouselIcon" /></button>
                         </div>
