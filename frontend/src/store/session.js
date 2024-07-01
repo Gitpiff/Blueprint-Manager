@@ -29,7 +29,7 @@ export const login = (projectManager) => async (dispatch) => {
             password
         })
     })
-    
+
     if(response.ok) {
         const data = await response.json();
         console.log(data)
@@ -70,9 +70,9 @@ export const signup = (projectManager) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
     const response = await csrfFetch("/api/session", {
-        method: "DELETE "
+        method: "DELETE"
     })
-    
+
     dispatch(removeProjectManager())
     return response
 }
@@ -96,7 +96,5 @@ const sessionReducer = (state = initialState, action) => {
         return state;
     }
 };
-  
+
 export default sessionReducer;
-
-
