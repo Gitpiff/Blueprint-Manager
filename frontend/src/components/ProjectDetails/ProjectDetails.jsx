@@ -106,9 +106,9 @@ export default function ProjectDetails() {
             <div className="projectCard">
                 <h1>{project.name}</h1>
                 <div className="calc-img-container">
-                    <div>
+                    {/* <div>
                         <CalculatorModal />
-                    </div>
+                    </div> */}
                     <img className="hover-saturation" style={{ height: '500px', width: '500px' }} src={project.coverImage} alt={project.name} />
                     {/* <div style={{width: "400px"}}>
                         <Map />
