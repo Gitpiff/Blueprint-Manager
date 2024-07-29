@@ -70,7 +70,7 @@ export const signup = (projectManager) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
     const response = await csrfFetch("/api/session", {
-        method: "DELETE"
+        method: 'DELETE'
     })
 
     dispatch(removeProjectManager())
