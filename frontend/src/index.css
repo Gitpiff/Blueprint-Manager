@@ -28,7 +28,7 @@ header {
     justify-content: space-between;
     align-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap;  
 }
 
 nav {
@@ -104,7 +104,7 @@ button:hover {
 .card {
     border: solid;
     padding: 20px;
-    margin: 30px;
+    margin: 30px; 
     background-color: white;
     opacity: .9;
     text-decoration: none;
@@ -125,18 +125,20 @@ button:hover {
 }
 
 a {
- text-decoration: none;
+ text-decoration: none;   
 }
 
 .projectCard {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
     background-color: azure;
     opacity: .9;
     color: black;
     height: 100vh;
-    align-items: center;
-    justify-content: center;
 }
 
 .projectCard > h1 {
@@ -157,7 +159,7 @@ a {
     display: flex;
     align-items: flex-end;
     /* padding: 20px; */
-    margin: 20px;
+    margin: 20px; 
 }
 
 .calc-img-container > div {
@@ -234,7 +236,7 @@ a {
 .home-buttons > button:hover {
     cursor: pointer;
     background-color: azure;
-
+    
 }
 
 .delete {
@@ -277,12 +279,12 @@ a {
 
 
 .hover-saturation {
-    transition: filter 0.3s ease;
-    filter: saturate(1);
+    transition: filter 0.3s ease; 
+    filter: saturate(1); 
 }
 
 .hover-saturation:hover {
-    filter: saturate(5);
+    filter: saturate(5); 
 }
 
 .hover-saturation:hover {
@@ -328,14 +330,14 @@ a {
     border-radius: 50%;
     background-color: grey;
 }
-.red {
-    background-color: red;
+.red { 
+    background-color: red; 
 }
 
-.orange {
-    background-color: orange;
+.orange { 
+    background-color: orange; 
 }
 
-.green {
-    background-color: green;
+.green { 
+    background-color: green; 
 }
