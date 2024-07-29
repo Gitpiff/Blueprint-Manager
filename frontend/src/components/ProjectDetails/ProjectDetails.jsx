@@ -7,7 +7,7 @@ import EditProjectModal from "../EditProjectModal";
 import DeleteModal from "../DeleteModal";
 import EmployeeList from "../EmployeesList";
 import Footer from "../Footer";
-import CalculatorModal from "../Calculator/Calculator";
+//import CalculatorModal from "../Calculator/Calculator";
 // import Map from "../Map";
 
 export default function ProjectDetails() {
